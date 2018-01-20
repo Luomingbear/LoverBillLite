@@ -1,0 +1,148 @@
+.card_layout {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20rpx;
+}
+
+.card_top {
+  display: flex;
+  flex-direction: row;
+  background: #fff;
+  padding: 20rpx;
+}
+
+.avatar {
+  float: left;
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+}
+
+.avatar_small {
+  float: left;
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+}
+
+.nickname_layout {
+  flex-direction: column;
+  flex: auto;
+}
+
+.nickname {
+  font-size: 14pt;
+  color: #221d1e;
+  margin-left: 10rpx;
+}
+
+.nickname_small {
+  font-size: 12pt;
+  color: #221d1e;
+  margin-left: 10rpx;
+}
+
+.rest_time {
+  margin-top: 10rpx;
+  font-size: 11pt;
+  color: #898989;
+  margin-left: 10rpx;
+}
+
+.rest_time_small {
+  margin-top: 10rpx;
+  display: flex;
+  font-size: 9pt;
+  color: #898989;
+  margin-left: 10rpx;
+}
+
+.click_layout {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 10rpx 20rpx;
+}
+
+.icon_normal {
+  width: 12pt;
+  height: 12pt;
+}
+
+.card_bottom {
+  display: flex;
+  flex-direction: row;
+  padding: 20rpx;
+  background: #fff;
+  align-items: center;
+  overflow: auto;
+}
+
+.content_layout {
+  display: flex;
+  flex: auto;
+  flex-direction: column;
+}
+
+.cover_right {
+  display: flex;
+  width: 150rpx;
+  height: 150rpx;
+  float: right;
+  overflow: hidden;
+}
+
+.content {
+  height: 2.5em;
+  font-size: 14pt;
+  color: #221d1e;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  margin: 0px 20rpx;
+}
+
+.location_layout {
+  display: flex;
+  flex-direction: row;
+}
+
+.location_icon {
+  width: 12pt;
+  height: 12pt;
+  margin-top: 20rpx;
+  float: left;
+  margin-left: 20rpx;
+}
+
+.location_text {
+  margin-top: 20rpx;
+  font-size: 11pt;
+  color: #898989;
+}
+
+.middle_text {
+  display: flex;
+  height: 3em;
+  text-align: center;
+  justify-content: center;
+  align-items: Center;
+  color:#898989;
+}
+
+/*文本内容*/
+
+.content_full {
+  display: flex;
+  flex: 1;
+  font-size: 14pt;
+  color: #221d1e;
+  margin: 0 20rpx;
+  word-wrap: break-all break-word;
+}
+
+
+
+

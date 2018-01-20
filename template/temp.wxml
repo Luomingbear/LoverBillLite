@@ -1,0 +1,21 @@
+<!-- 卡片模板 -->
+<template name="cardItem">
+  
+    
+</template>
+
+<!-- 没有更多的模板 -->
+<template name="noMore">
+<view class="part_line"></view>
+<view class="middle_text">
+  <text>暂无更多</text>
+</view>
+</template>
+
+<!-- 加载更多的模板 -->
+<template name="seeMore">
+  <view class="part_line"></view>
+  <view class="middle_text" bindtap="clickSeeMore">
+    <text>点击加载更多</text>
+  </view>
+</template>

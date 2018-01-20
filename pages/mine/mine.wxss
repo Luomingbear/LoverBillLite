@@ -1,0 +1,54 @@
+/* pages/mine/mine.wxss */
+
+.heard_layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50rpx;
+  background: #eff1f4;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.userinfo-avatar {
+  width: 200rpx;
+  height: 200rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.nickname{
+  font-size: 18pt;
+}
+
+.item_layout {
+  display: flex;
+  flex-direction: row;
+  padding: 30rpx 20rpx;
+  justify-content: center;
+  align-items: Center;
+}
+
+.icon_left {
+  width: 16pt;
+  height: 16pt;
+  float: left;
+}
+
+.title_text {
+  flex: auto;
+  font-size: 14pt;
+  margin-left: 10rpx;
+  color: #221d1e;
+}
+
+.icon_right {
+  width: 16pt;
+  height: 16pt;
+  float: right;
+  margin-left: 10rpx;
+}

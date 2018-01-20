@@ -1,0 +1,39 @@
+{
+  "pages": [
+    "pages/bill/bill",
+    "pages/analysis/analysis",
+    "pages/mine/mine",
+    "pages/login/login"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "情侣账单",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#bfbfbf",
+    "selectedColor": "#ff7073",
+    "backgroundColor":"#fff",
+    "list": [
+      {
+        "pagePath": "pages/bill/bill",
+        "iconPath": "image/zhangdan.png",
+        "selectedIconPath": "image/zhangdan_h.png",
+        "text": "账单"
+      },
+      {
+        "pagePath": "pages/analysis/analysis",
+        "iconPath": "image/fenxi.png",
+        "selectedIconPath": "image/fenxi_h.png",
+        "text": "分析"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "iconPath": "image/wode.png",
+        "selectedIconPath": "image/wode_h.png",
+        "text": "我的"
+      }
+    ]
+  }
+}
