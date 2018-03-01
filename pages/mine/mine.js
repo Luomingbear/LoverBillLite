@@ -8,12 +8,10 @@ Page({
    */
   data: {
     userInfo: {
-      avatar: "https://image.storyshu.com/storyshu_avatar.jpg",
-      nickname: "点点"
+      avatar: "",
+      nickname: "点点",
+      uid: "0000"
     },
-    buttonBgo: '#fff',
-    buttonBgt: '#fff',
-    buttonBgr: '#fff',
   },
 
   /**
@@ -59,43 +57,13 @@ Page({
 
   },
 
-  touchStart1: function (e) {
-    var that = this
-    that.setData({
-      buttonBgo: "#eff1f4"
-    })
-  },
-
-  touchStart2: function (e) {
-    var that = this
-    that.setData({
-      buttonBgt: "#eff1f4"
-    })
-
-  }, touchStart3: function (e) {
-    var that = this
-    that.setData({
-      buttonBgr: "#eff1f4"
-    })
-  },
-
-  touchEnd: function (e) {
-
-    var that = this
-    that.setData({
-      buttonBgo: "#fff",
-      buttonBgt: "#fff",
-      buttonBgr: "#fff",
-    })
-  },
-
   myStoryTap: function (e) {
     wx.getStorage({
       key: 'userInfo',
       success: function (res) {
         console.log(res.data)
         if (res.data == null) {
-          
+
           wx.navigateTo({
             url: '../login/login'
           })

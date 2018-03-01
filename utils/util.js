@@ -18,25 +18,6 @@ function formatCreateTime(time) {
   return diff
 }
 
-// 格式化销毁时间
-function formatDestroyTime(time) {
-  var date = new Date(time)
-  var curDate = new Date()
-
-  var restTime = (date.getTime() - curDate.getTime()) / 1000
-  if (restTime <= 0) {
-    return (date.getMonth() + 1) + "月" + date.getDate() + "日，已过期"
-  } else if (restTime < 60 * 60) {
-    return "剩余" + parseInt(restTime / 60 + 0.5) + "分钟"
-  } else if (restTime < 60 * 60 * 24) {
-    return "剩余" + parseInt(restTime / 60 / 60 + 0.5) + "小时"
-  } else {
-    return "剩余" + parseInt(restTime / 60 / 60 / 24 + 0.5) + "天"
-  }
-
-  return restTime
-}
-
 function formatNumber(n) {
   n = n.toString()
   return n[1] ? n : '0' + n
@@ -73,55 +54,22 @@ function isOutDate(time) {
   } else return false
 }
 
-function weixinLogin(userInfo,that) {
-  wx.login({
-    success: function (res) {
-      wx.request({
-        url: 'https://api.storyshu.com/wxLogin.php',
-        data: {
-          code: res.code,
-          nickname: userInfo.nickName,
-          avatar: userInfo.avatarUrl,
-          grant: 1
-        },
-        header: {
-          'content-type': 'application/json'
-        },
-        method: "POST",
-        dataType: "JSON",
-        success: function (res) {
-          // {"session_key":"r97uXNiejogjb38Sqk601A==","expires_in":7200,"openid":"odezs0GNoeMm_T6mVCbfIVdHOkYw"}
-          console.log(res.data)
-          var parse = JSON.parse(res.data)
-          wx.setStorage({
-            key: 'dId',
-            data: parse.data.userId,
-          })
-          var userInfo = {
-            userId: parse.data.userId,
-            nickname: parse.data.nickname,
-            avatar: parse.data.avatar
-          }
-          wx.setStorage({
-            key: 'userInfo',
-            data: userInfo,
-          })
+/**
+ * 获取当前时间的时分秒
+ */
+function getCurHMS() {
+  var date = new Date()
+  var hour = date.getHours()
+  var minute = date.getMinutes()
+  var second = date.getSeconds()
 
-          //关闭当前页面，返回
-          wx.navigateBack({
-            delta: 1
-          })
-        }
-      })
-    }
-  })
+  return hour + ":" + minute + ":" + second
 }
 
 module.exports = {
   formatTime: formatTime,
-  formatDestroyTime: formatDestroyTime,
   formatCreateTime: formatCreateTime,
   getCurFormatTime: getCurFormatTime,
   isOutDate: isOutDate,
-  weixinLogin: weixinLogin
+  getCurHMS: getCurHMS,
 }

@@ -6,6 +6,20 @@
   flex-direction: column;
 }
 
+/*水平布局*/
+
+.horizontal_layout {
+  display: flex;
+  flex-direction: row;
+}
+
+/*竖直布局*/
+
+.vertical_layout {
+  display: flex;
+  flex-direction: column;
+}
+
 .part_line {
   height: 10rpx;
   display: flex;
@@ -16,7 +30,7 @@
   display: flex;
 }
 
-.fixed{
+.fixed {
   position: fixed;
 }
 
@@ -32,27 +46,70 @@
 }
 
 .margin_small {
-  margin: 10rpx 0;
+  margin: 10rpx;
 }
 
 .margin_normal {
-  margin:  20rpx 0;
+  margin: 20rpx;
 }
 
-/*水平布局*/
-
-.horizontal_layout {
-  display: flex;
-  flex-direction: row;
+.auto {
+  flex: auto;
 }
 
-/*竖直布局*/
-
-.vertical_layout {
-  display: flex;
-  flex-direction: column;
-}
-
-.vertical_middle {
+.center_main {
   align-items: center;
+}
+
+.center_cross {
+  justify-content: center;
+}
+
+/* 图片的大小 */
+
+.image_normal {
+  width: 90rpx;
+  height: 90rpx;
+}
+
+.createBillBtn {
+  margin: 20rpx 5%;
+  background-color: #ff7073;
+  color: white;
+  bottom: 0;
+}
+
+.createBillBtnHover {
+  margin: 20rpx 5%;
+  background-color: #ff6073;
+  color: white;
+  bottom: 0;
+}
+
+.color_gray {
+  color: #666666;
+}
+
+.color_graylight {
+  color: #999999;
+}
+
+.color_black {
+  color: #333333;
+}
+
+.font_big{
+  font-size: 14pt;
+}
+
+.font_normal{
+  font-size: 12pt;
+}
+
+.font_small{
+  font-size: 10pt;
+}
+
+.bold{
+  font-weight: bold;
 }

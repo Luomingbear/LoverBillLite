@@ -1,1 +1,2 @@
 /* pages/bill/bill.wxss */
+@import "../../template/temp.wxss";

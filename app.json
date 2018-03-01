@@ -3,7 +3,8 @@
     "pages/bill/bill",
     "pages/analysis/analysis",
     "pages/mine/mine",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/create/create"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -14,7 +15,7 @@
   "tabBar": {
     "color": "#bfbfbf",
     "selectedColor": "#ff7073",
-    "backgroundColor":"#fff",
+    "backgroundColor": "#fff",
     "list": [
       {
         "pagePath": "pages/bill/bill",

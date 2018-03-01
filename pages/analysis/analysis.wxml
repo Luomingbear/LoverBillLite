@@ -1,2 +1,17 @@
 <!--pages/analysis/analysis.wxml-->
+<view class='horizontal_layout'>
+  <view class='vertical_layout center_main auto'>
+    <text class='color_gray font_small'>2018年</text>
+    <text class='color_black font_big bold'>2月</text>
+  </view>
 
+  <view class='vertical_layout center_main auto'>
+    <text class='color_gray font_small'>总消费</text>
+    <text class='color_black font_big bold'>¥8888</text>
+  </view>
+
+  <view class='vertical_layout center_main auto'>
+    <text class='color_gray font_small'>相比上月</text>
+    <text class='color_black font_big bold'>+¥5641</text>
+  </view>
+</view>

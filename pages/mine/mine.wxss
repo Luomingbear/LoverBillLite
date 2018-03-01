@@ -21,8 +21,15 @@
   border-radius: 50%;
 }
 
-.nickname{
+.nickname {
   font-size: 18pt;
+  font-weight: bold;
+  color: #333
+}
+
+.idtext {
+  font-size: 12pt;
+  color: #666
 }
 
 .item_layout {
@@ -41,9 +48,9 @@
 
 .title_text {
   flex: auto;
-  font-size: 14pt;
+  font-size: 12pt;
   margin-left: 10rpx;
-  color: #221d1e;
+  color: #333;
 }
 
 .icon_right {

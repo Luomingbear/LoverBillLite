@@ -1,53 +1,62 @@
 .card_layout {
-  width: 100%;
+  width: 92%;
   display: flex;
   flex-direction: column;
-  padding-bottom: 20rpx;
+  padding: 20rpx 0;
+  border-radius: 10rpx;
+  border-width: 1px;
+  margin: 20rpx 4%;
+  box-shadow: 0 0 10rpx lightgray;
 }
 
-.card_top {
+.card_bottom_layout{
   display: flex;
   flex-direction: row;
-  background: #fff;
-  padding: 20rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  margin-top: 20rpx;
 }
-
 .avatar {
   float: left;
-  width: 90rpx;
-  height: 90rpx;
+  width: 80rpx;
+  height: 80rpx;
   border-radius: 50%;
-}
-
-.avatar_small {
-  float: left;
-  width: 60rpx;
-  height: 60rpx;
-  border-radius: 50%;
-}
-
-.nickname_layout {
-  flex-direction: column;
-  flex: auto;
 }
 
 .nickname {
-  font-size: 14pt;
-  color: #221d1e;
-  margin-left: 10rpx;
-}
-
-.nickname_small {
   font-size: 12pt;
-  color: #221d1e;
+  color: #555860;
   margin-left: 10rpx;
 }
 
-.rest_time {
-  margin-top: 10rpx;
-  font-size: 11pt;
-  color: #898989;
+.money{
+  flex: auto;
+  font-size: 14pt;
+  color: #333333;
+  font-weight: bold;
   margin-left: 10rpx;
+}
+
+.tag{
+  font-size: 10pt;
+  color: #666666;
+  margin-left: 10rpx;
+  margin-right: 20rpx;
+}
+
+/**
+滑动的卡片个体
+ */
+.slider_item {
+    position: absolute;
+    width: 95%;
+    height: 166px;
+    top: 0;
+}
+
+.chargeTime{
+  font-size: 12pt;
+  color: #333333;
 }
 
 .rest_time_small {
@@ -68,15 +77,6 @@
 .icon_normal {
   width: 12pt;
   height: 12pt;
-}
-
-.card_bottom {
-  display: flex;
-  flex-direction: row;
-  padding: 20rpx;
-  background: #fff;
-  align-items: center;
-  overflow: auto;
 }
 
 .content_layout {
@@ -129,7 +129,7 @@
   text-align: center;
   justify-content: center;
   align-items: Center;
-  color:#898989;
+  color: #898989;
 }
 
 /*文本内容*/
@@ -142,7 +142,3 @@
   margin: 0 20rpx;
   word-wrap: break-all break-word;
 }
-
-
-
-

@@ -1,0 +1,23 @@
+
+function getPage(ll) {
+  var pages = [];
+  var size = ll / 10 + 1;
+  for (var i = 0; i < ll; i++) {
+    pages = pages.push(i);
+  }
+  console.log(ll);
+  return pages;
+}
+
+/**
+ * 获取当前的时间
+ */
+function getNowDate() {
+  var curDate = getDate();
+  var month = curDate.getMonth() + 1;
+  return curDate.getFullYear() + "-" + month + "-" + curDate.getDate();
+}
+module.exports = {
+  getPage: getPage,
+  getNowDate: getNowDate,
+}

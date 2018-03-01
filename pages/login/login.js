@@ -15,10 +15,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
   },
 
   dLogin: function (event) {
-    var that = this
     if (email == null || email == "") {
       wx.showToast({
         title: '请输入邮箱',
@@ -31,51 +31,22 @@ Page({
       })
     }
 
-    var passwordMd5 = md5Util.hexMD5(email + password)
-    console.log(passwordMd5)
-
-    wx.request({
-      url: 'https://api.storyshu.com/loginUser.php',
-      data: {
-        email: email,
-        password: passwordMd5,
-      },
-      header: {
-        'content-type': 'application/json'
-      },
-      method: "POST",
-      dataType: "JSON",
+    wx.getUserInfo({
       success: function (res) {
-        var result = JSON.parse(res.data);
-        console.log(result)
-
-        if (result.code == 200) {
-          wx.showToast({
-            title: '登陆成功',
-          })
-
-          wx.setStorage({
-            key: 'dId',
-            data: result.data.userId,
-          })
-          wx.setStorage({
-            key: 'userInfo',
-            data: result.data,
-          })
-
-          //关闭当前页面，返回
-          wx.navigateBack({
-            delta: 1
-          })
-
-        } else {
-          wx.showToast({
-            title: '登陆失败',
-            image: "../../image/warming.png"
-          })
-        }
+        console.log(res);
+        var userinfo = res.userInfo;
+        wx.setStorage({
+          key: 'userInfo',
+          data: {
+            nickname: userinfo.nickName,
+            avatar: userinfo.avatarUrl
+          },
+        })
+        var iuserService = require("../../utils/IUserService.js");
+        iuserService.emailLogin(email, password, userinfo.avatarUrl, userinfo.nickname, this);
       }
     })
+
   },
 
   emailInput: function (event) {
@@ -87,6 +58,7 @@ Page({
   },
 
   dRegister: function (e) {
+
   },
 
   /**

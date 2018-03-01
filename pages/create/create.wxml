@@ -1,0 +1,37 @@
+<!--pages/create.wxml-->
+<wxs src="create.wxs" module="util" />
+<import src="../../template/temp.wxml" />
+
+<view class='horizontal_layout center_main' style='width:80%; margin:30rpx 10%'>
+  <text class='money'>¥</text>
+  <input class='moneyInput' placeholder="请输入金额" type="digit" bindinput='inputMoney'></input>
+</view>
+<view class='line'></view>
+<view class="test">
+  <view class="test_wrap" style="width:{{tag.twp}}rpx;">
+    <view wx:for="{{tag.tags}}" class="test_item {{item.selected ? 'item_selected' : ''}}" style="width:{{tag.swp}}rpx;" data-index="{{index}}" bindtap="selectItem">
+      <view class="item_wrap">
+        <image class="item_img" src="{{item.image}}" />
+        <view class="item_title">{{item.name}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class='textLayout'>
+  <text>日期:</text>
+  <picker mode="date" value="{{date}}" start="2015-09-01" end="{{date ==''?util.getNowDate():date}}" bindchange="bindDateChange">
+    <view class="picker margin_normal" wx:if="{{date!=''}}">
+      {{date}}
+    </view>
+    <view class="picker margin_normal" wx:else>
+      {{util.getNowDate()}}
+    </view>
+  </picker>
+</view>
+
+<view class='textLayout'>
+  <text>备注:</text>
+  <input class='margin_normal auto' placeholder="请输入备注（选填）" bindinput='inputNote'></input>
+</view>
+<button class='createBillBtn' hover-class="createBillBtnHover" bindtap='createBill'>记一笔</button>

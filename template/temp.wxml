@@ -1,15 +1,30 @@
+<wxs src="../utils/util.wxs" module="util" />
+
 <!-- 卡片模板 -->
 <template name="cardItem">
-  
-    
+  <view class='card_layout'>
+    <view class='horizontal_layout center_main'>
+      <view style='width :3px;height:12pt; background:{{color}};'></view>
+      <text class='nickname auto' style='color:{{color}}'>{{nickname}}</text>
+      <text class='tag' bindtap='onDeleteClick' id='{{bid}}'>删除</text>
+    </view>
+    <view class='card_bottom_layout'>
+      <image class='image_normal' src='{{image}}'></image>
+      <view class="vertical_layout auto" style="margin-left:10rpx;">
+        <text class='money'>¥{{cost}}</text>
+        <text class='tag'>{{note==""?'暂无':note}}</text>
+      </view>
+      <text class='chargeTime'>{{util.convertTime(time)}}</text>
+    </view>
+  </view>
 </template>
 
 <!-- 没有更多的模板 -->
 <template name="noMore">
-<view class="part_line"></view>
-<view class="middle_text">
-  <text>暂无更多</text>
-</view>
+  <view class="part_line"></view>
+  <view class="middle_text">
+    <text>暂无更多</text>
+  </view>
 </template>
 
 <!-- 加载更多的模板 -->
@@ -17,5 +32,12 @@
   <view class="part_line"></view>
   <view class="middle_text" bindtap="clickSeeMore">
     <text>点击加载更多</text>
+  </view>
+</template>
+
+<template name="tagItem">
+  <view class='vertical_layout center_main slider_item' bindTap="showHi('{{tid}}')">
+    <image class='image_normal' src='{{image}}'></image>
+    <text class='tag'>{{name}}</text>
   </view>
 </template>

@@ -1,2 +1,12 @@
 <!--pages/bill/bill.wxml-->
+<import src="../../template/temp.wxml" />
+<view hidden='true'>
+  <image></image>
+</view>
 
+<button class='createBillBtn' hover-class='createBillBtnHover' bindtap='createBill'>记一笔</button>
+
+<view wx:for="{{billList}}" wx:key="{{...item.index}}">
+  <template is="cardItem" data="{{...item}}">
+  </template>
+</view>
