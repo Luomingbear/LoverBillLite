@@ -1,17 +1,41 @@
 <!--pages/analysis/analysis.wxml-->
-<view class='horizontal_layout'>
+<import src="../../template/temp.wxml" />
+<wxs src="../../utils/util.wxs" module="util" />
+
+<view class='horizontal_layout margin_normal'>
   <view class='vertical_layout center_main auto'>
-    <text class='color_gray font_small'>2018年</text>
-    <text class='color_black font_big bold'>2月</text>
+    <text class='color_gray font_small'>{{util.getYear()}}</text>
+    <text class='color_black font_big bold'>{{util.getMonth()}}</text>
   </view>
 
   <view class='vertical_layout center_main auto'>
     <text class='color_gray font_small'>总消费</text>
-    <text class='color_black font_big bold'>¥8888</text>
+    <text class='color_black font_big bold'>{{monthCost}}</text>
   </view>
 
   <view class='vertical_layout center_main auto'>
     <text class='color_gray font_small'>相比上月</text>
-    <text class='color_black font_big bold'>+¥5641</text>
+    <text class='color_black font_big bold'>{{difMonthCost}}</text>
   </view>
+</view>
+
+<text class='title_text'>最近一周消费情况</text>
+<canvas canvas-id="weekCanvas" disable-scroll="true" class="canvas"></canvas>
+
+<text class='title_text'>本月各类别消费情况</text>
+<canvas canvas-id="monthCanvas" disable-scroll="true" class="canvas"></canvas>
+
+<text class='title_text'>本月单笔消费排行</text>
+<view wx:for="{{mostList}}" wx:key="{{...item.index}}">
+  <template is="costItem" data="{{...item}}">
+  </template>
+</view>
+
+<text class='title_text'>近半年消费走势</text>
+<canvas canvas-id="halfYearCanvas" disable-scroll="true" class="canvas"></canvas>
+
+<text class='title_text'>本月双方消费比例</text>
+<view wx:for="{{loverList}}" wx:key="{{...item.index}}">
+  <template is="loverCostItem" data="{{...item}}">
+  </template>
 </view>

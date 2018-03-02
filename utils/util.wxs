@@ -16,6 +16,24 @@ function convertTime(time) {
   return curDate;
 }
 
+/**
+ * 获取当前的年
+ */
+function getYear() {
+  var curDate = getDate();
+  return curDate.getFullYear() + "年";
+}
+
+/**
+ * 获取当前的月
+ */
+function getMonth() {
+  var curDate = getDate();
+  return (curDate.getMonth() + 1) + "月";
+}
+
 module.exports = {
-  convertTime: convertTime
+  convertTime: convertTime,
+  getYear: getYear,
+  getMonth: getMonth,
 }

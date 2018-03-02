@@ -4,17 +4,18 @@
     <view bindtap="bindViewTap" class="userinfo">
       <image class="userinfo-avatar" src="{{userInfo.avatar}}"></image>
       <text class="nickname">{{userInfo.nickname}}</text>
-      <text class="idtext">{{userInfo.uid}}</text>
+      <text class="idtext">ID:{{userInfo.uid}}</text>
     </view>
   </view>
 
+
   <scroll-view scroll-y style="height :100%">
-    <view class="item_layout" style="background:{{buttonBgo}}" bindtap="myStoryTap" bindtouchstart="touchStart1" bindtouchend="touchEnd">
-      <image src="../../image/history.png" class="icon_left"></image>
+    <view class="item_layout" style="background:{{buttonBgo}}" bindtap="bindTap">
+      <image class="icon_left"></image>
       <view class="title_text">
         <text>绑定对象</text>
       </view>
-      <image src="../../image/more.png" class="icon_right"></image>
+      <image class="icon_right"></image>
     </view>
 
     <!-- <view class="part_line"></view>
@@ -27,8 +28,8 @@
 
     <view class="part_line"></view>
 
-    <view class="item_layout" style="background:{{buttonBgr}}" bindtap="logoutTap" bindtouchstart="touchStart3" bindtouchend="touchEnd">
-      <image src="../../image/setting.png" class="icon_left"></image>
+    <view class="item_layout" style="background:{{buttonBgr}}" bindtap="logoutTap">
+      <image class="icon_left"></image>
       <view class="title_text">
         <text>退出登陆</text>
       </view>

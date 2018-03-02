@@ -12,7 +12,7 @@
       <image class='image_normal' src='{{image}}'></image>
       <view class="vertical_layout auto" style="margin-left:10rpx;">
         <text class='money'>¥{{cost}}</text>
-        <text class='tag'>{{note==""?'暂无':note}}</text>
+        <text class='tag'>{{note==""?'暂无备注':note}}</text>
       </view>
       <text class='chargeTime'>{{util.convertTime(time)}}</text>
     </view>
@@ -35,9 +35,42 @@
   </view>
 </template>
 
+<!-- 标签模板 -->
 <template name="tagItem">
   <view class='vertical_layout center_main slider_item' bindTap="showHi('{{tid}}')">
     <image class='image_normal' src='{{image}}'></image>
     <text class='tag'>{{name}}</text>
+  </view>
+</template>
+
+<!-- 消费排行模板 -->
+<template name="costItem">
+  <view class='most_cost_layout'>
+    <image class='image_normal' src='{{image}}'></image>
+    <view class='vertical_layout auto'>
+      <view class='horizontal_layout' style='margin-bottom: 10rpx'>
+        <text class='money auto '>{{cost}}</text>
+        <text class='nickname color_black'>{{nickname}}</text>
+      </view>
+      <view class='horizontal_layout'>
+        <text class='tag auto'>{{note==""?'暂无备注':note}}</text>
+        <text class='tag'>{{util.convertTime(time)}}</text>
+      </view>
+    </view>
+  </view>
+</template>
+
+<!-- 情侣消费模板 -->
+<template name="loverCostItem">
+  <view class='lover_cost_layout'>
+    <text class='lover_nickname'>{{nickname}}</text>
+    <view class='vertical_layout center_main auto lover_center_line'>
+      <text class='tag'>消费</text>
+      <text class='lover_money'>{{cost}}</text>
+    </view>
+    <view class='vertical_layout center_main auto lover_center_line'>
+      <text class='tag'>与上月相比</text>
+      <text class='lover_money'>{{difCost}}</text>
+    </view>
   </view>
 </template>

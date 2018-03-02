@@ -1,4 +1,10 @@
 /* pages/analysis/analysis.wxss */
+@import "../../template/temp.wxss";
 
-
-
+.title_text {
+  border-left: 3px solid lightgray;
+  padding-left: 3pt;
+  margin: 50rpx 20rpx;
+  font-size: 10pt;
+  color: gray;
+}

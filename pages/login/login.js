@@ -39,11 +39,12 @@ Page({
           key: 'userInfo',
           data: {
             nickname: userinfo.nickName,
-            avatar: userinfo.avatarUrl
+            avatar: userinfo.avatarUrl,
+            uid: "00000"
           },
         })
         var iuserService = require("../../utils/IUserService.js");
-        iuserService.emailLogin(email, password, userinfo.avatarUrl, userinfo.nickname, this);
+        iuserService.emailLogin(email, password, userinfo.avatarUrl, userinfo.nickName, this);
       }
     })
 

@@ -1,0 +1,8 @@
+<!--pages/bind/bind.wxml-->
+<view class='container'>
+  <text class='notice'>如果您已经绑定了恋人，该操作会解绑之前的恋人，请谨慎处理</text>
+
+  <input class='input' placeholder='请输入恋人的ID' type="number" bindinput="inputLover"></input>
+
+  <button class="createBillBtn" hover-class="createBillBtnHover" bindtap="bindLover">绑定</button>
+</view>

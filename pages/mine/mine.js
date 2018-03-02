@@ -57,7 +57,7 @@ Page({
 
   },
 
-  myStoryTap: function (e) {
+  bindTap: function (e) {
     wx.getStorage({
       key: 'userInfo',
       success: function (res) {
@@ -69,7 +69,7 @@ Page({
           })
         } else {
           wx.navigateTo({
-            url: '../mystory/mystory',
+            url: '../bind/bind',
           })
         }
       }, fail: function (res) {
@@ -106,6 +106,7 @@ Page({
 
   // 退出登陆
   logoutTap: function (e) {
+    var that = this;
     wx.showModal({
       title: '退出登陆',
       content: '确定退出登陆吗？点击确定将清除用户在本地保留的数据',
@@ -119,7 +120,8 @@ Page({
           that.setData({
             userInfo: {
               avatar: "https://image.storyshu.com/storyshu_avatar.jpg",
-              nickname: "点点"
+              nickname: "点点",
+              uid: "0000"
             }
           })
         }

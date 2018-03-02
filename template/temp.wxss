@@ -9,13 +9,14 @@
   box-shadow: 0 0 10rpx lightgray;
 }
 
-.card_bottom_layout{
+.card_bottom_layout {
   display: flex;
   flex-direction: row;
   margin-left: 20rpx;
   margin-right: 20rpx;
   margin-top: 20rpx;
 }
+
 .avatar {
   float: left;
   width: 80rpx;
@@ -29,17 +30,17 @@
   margin-left: 10rpx;
 }
 
-.money{
-  flex: auto;
+.money {
   font-size: 14pt;
-  color: #333333;
+  color: #333;
   font-weight: bold;
   margin-left: 10rpx;
+  margin-right: 20rpx;
 }
 
-.tag{
+.tag {
   font-size: 10pt;
-  color: #666666;
+  color: #666;
   margin-left: 10rpx;
   margin-right: 20rpx;
 }
@@ -47,16 +48,17 @@
 /**
 滑动的卡片个体
  */
+
 .slider_item {
-    position: absolute;
-    width: 95%;
-    height: 166px;
-    top: 0;
+  position: absolute;
+  width: 95%;
+  height: 166px;
+  top: 0;
 }
 
-.chargeTime{
+.chargeTime {
   font-size: 12pt;
-  color: #333333;
+  color: #333;
 }
 
 .rest_time_small {
@@ -141,4 +143,38 @@
   color: #221d1e;
   margin: 0 20rpx;
   word-wrap: break-all break-word;
+}
+
+.most_cost_layout {
+  display: flex;
+  flex-direction: row;
+  width: 92%;
+  margin: 10rpx 4%;
+  align-items: center;
+}
+
+.lover_cost_layout {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  margin: 20rpx 5%;
+  align-items: center;
+}
+
+.lover_money {
+  font-size: 12pt;
+  color: #333;
+  font-weight: bold;
+}
+
+.lover_nickname {
+  font-size: 16pt;
+  flex: auto;
+  color: #333;
+  text-align: center;
+  font-weight: bold;
+}
+
+.lover_center_line {
+    border-left: 1px dashed lightgray;
 }

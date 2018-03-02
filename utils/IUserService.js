@@ -49,6 +49,31 @@ function weixinLogin(userInfo, that) {
     }
   })
 }
+/**
+ * 绑定对象
+ */
+function bindLover(data, cb) {
+  wx.request({
+    method: "POST",
+    dataType: "JSON",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded'
+    },
+    url: getApp().baseUrl + "api/bindLover.php",
+    data: data,
+    success: function (res) {
+      console.log(res);
+      var parse = JSON.parse(res.data);
+      if (parse.code == SUCCEED) {
+        typeof cb == 'function' && cb();
+      } else {
+        wx.showToast({
+          title: parse.message,
+        })
+      }
+    }
+  });
+}
 
 /***
  * 获取用户信息
@@ -88,6 +113,11 @@ function emailLogin(email, password, avatar, nickname, that) {
           data: result.data.uid,
         });
 
+        wx.setStorageSync("userInfo", {
+          nickname: nickname,
+          avatar: avatar,
+          uid: result.data.uid
+        });
         //返回刚才的页面
         wx.navigateBack({
           delta: 1
@@ -105,4 +135,5 @@ module.exports = {
   emailLogin: emailLogin,
   weixinLogin: weixinLogin,
   getIUserInfo: getIUserInfo,
+  bindLover: bindLover,
 }

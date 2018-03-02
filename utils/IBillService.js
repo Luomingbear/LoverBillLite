@@ -23,7 +23,7 @@ function getBillList(uid, page, that) {
       page: page
     },
     success: function (res) {
-      console.log(res.data);
+      // console.log(res.data);
       var parse = JSON.parse(res.data);
       if (parse.code == SUCCEED) {
         if (page != 1) {
@@ -145,9 +145,36 @@ function deleteBill(data, cb) {
   });
 }
 
+/**
+ * 分析
+ */
+function analysis(data, cb) {
+  wx.request({
+    method: "POST",
+    dataType: "JSON",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded'
+    },
+    url: getApp().baseUrl + "api/analysis.php",
+    data: data,
+    success: function (res) {
+      // console.log(res);
+      var parse = JSON.parse(res.data);
+      if (parse.code == SUCCEED) {
+        typeof cb == 'function' && cb(parse);
+      } else {
+        wx.showToast({
+          title: parse.message,
+        })
+      }
+    }
+  });
+}
+
 module.exports = {
   getBillList: getBillList,
   getTags: getTags,
   createBill: createBill,
   deleteBill: deleteBill,
+  analysis: analysis,
 }
