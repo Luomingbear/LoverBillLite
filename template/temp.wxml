@@ -12,7 +12,7 @@
 <!-- 卡片模板 -->
 <template name="cardItem">
   <view class='card_layout'>
-    <view class='horizontal_layout center_main'>
+    <view class='card_top_layout'>
       <view style='width :3px;height:12pt; background:{{color}};'></view>
       <text class='nickname auto' style='color:{{color}}'>{{nickname}}</text>
       <text class='tag' bindtap='onDeleteClick' id='{{bid}}'>删除</text>
@@ -62,10 +62,10 @@
     <view class='vertical_layout auto'>
       <view class='horizontal_layout' style='margin-bottom: 10rpx'>
         <text class='money auto '>{{cost}}</text>
-        <text class='nickname color_black'>{{nickname}}</text>
+        <text class='nickname'>{{nickname}}</text>
       </view>
       <view class='horizontal_layout'>
-        <text class='tag auto'>{{note==""?'暂无备注':note}}</text>
+        <text class='auto font_small color_gray'>{{note==""?'暂无备注':note}}</text>
         <text class='tag'>{{util.convertTime(time)}}</text>
       </view>
     </view>

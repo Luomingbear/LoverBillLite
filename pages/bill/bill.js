@@ -53,7 +53,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    var ibillService = require("../../utils/IBillService.js")
+    var ibillService = require("../../utils/IBillService.js");
+    var util = require("../../utils/util.js");
     var that = this;
     var uid = wx.getStorageSync("uid");
     page = 1;

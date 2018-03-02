@@ -2,8 +2,11 @@
  * 转化时间显示
  */
 function convertTime(time) {
-  // var arr = time.replace("/\-/g", "/");
-  var date = getDate(time);
+  var s = "" + time;
+  console.log(s.replace("-", "/"));
+  
+  // var arr = time.replace(/-/g, "/");
+  var date = getDate(s.replace("-", "/").replace('-','/'));
   var curDate = getDate();
 
   if (curDate.getFullYear() == date.getFullYear() && curDate.getMonth() == date.getMonth() && curDate.getDate() == date.getDate()) {
@@ -13,7 +16,7 @@ function convertTime(time) {
   } else if (curDate.getFullYear() == date.getFullYear()) {
     return (date.getMonth() + 1) + "月" + date.getDate() + "日";
   } else return date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日";
-  return curDate;
+  return time;
 }
 
 /**

@@ -9,6 +9,13 @@
   box-shadow: 0 0 10rpx lightgray;
 }
 
+.card_top_layout{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 20rpx;
+}
+
 .card_bottom_layout {
   display: flex;
   flex-direction: row;
@@ -26,7 +33,7 @@
 
 .nickname {
   font-size: 12pt;
-  color: #555860;
+  color: #333;
   margin-left: 10rpx;
 }
 
@@ -42,7 +49,6 @@
   font-size: 10pt;
   color: #666;
   margin-left: 10rpx;
-  margin-right: 20rpx;
 }
 
 /**
