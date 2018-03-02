@@ -113,10 +113,11 @@ Page({
       success: function (res) {
         if (res.confirm) {
           wx.clearStorage()
-          wx.showToast({
-            title: '退出成功',
-          })
-          var that = this
+
+          getApp().wxToast({
+            title: '退出成功'
+          });
+          
           that.setData({
             userInfo: {
               avatar: "https://image.storyshu.com/storyshu_avatar.jpg",

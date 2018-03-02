@@ -3,17 +3,17 @@
 <wxs src="../../utils/util.wxs" module="util" />
 
 <view class='horizontal_layout margin_normal'>
-  <view class='vertical_layout center_main auto'>
+  <view class='vertical_layout center_main auto '>
     <text class='color_gray font_small'>{{util.getYear()}}</text>
     <text class='color_black font_big bold'>{{util.getMonth()}}</text>
   </view>
 
-  <view class='vertical_layout center_main auto'>
+  <view class='vertical_layout center_main auto lover_center_line'>
     <text class='color_gray font_small'>总消费</text>
     <text class='color_black font_big bold'>{{monthCost}}</text>
   </view>
 
-  <view class='vertical_layout center_main auto'>
+  <view class='vertical_layout center_main auto lover_center_line'>
     <text class='color_gray font_small'>相比上月</text>
     <text class='color_black font_big bold'>{{difMonthCost}}</text>
   </view>
@@ -23,7 +23,7 @@
 <canvas canvas-id="weekCanvas" disable-scroll="true" class="canvas"></canvas>
 
 <text class='title_text'>本月各类别消费情况</text>
-<canvas canvas-id="monthCanvas" disable-scroll="true" class="canvas"></canvas>
+<canvas canvas-id="monthCanvas" disable-scroll="true" class="canvas_rect"></canvas>
 
 <text class='title_text'>本月单笔消费排行</text>
 <view wx:for="{{mostList}}" wx:key="{{...item.index}}">
@@ -39,3 +39,6 @@
   <template is="loverCostItem" data="{{...item}}">
   </template>
 </view>
+
+
+<template is="wxToast" data="{{...wxToastConfig}}"></template>

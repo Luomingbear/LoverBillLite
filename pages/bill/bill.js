@@ -8,6 +8,7 @@ Page({
    */
   data: {
     billList: [],
+    todayCost: "0.00"
   },
 
   onShow: function () {
@@ -20,6 +21,15 @@ Page({
           return;
         }
         var ibillService = require("../../utils/IBillService.js");
+        var util = require("../../utils/util.js");
+        //获取今天的消费情况
+        ibillService.getTodayCost({
+          uid: res.data,
+          time: util.getCurFormatTime()
+        }, function (res) {
+          showTodayCost(res.data, that);
+        });
+        //获取账单列表
         ibillService.getBillList(res.data, 1, that);
       },
       fail: function (res) {
@@ -47,6 +57,14 @@ Page({
     var that = this;
     var uid = wx.getStorageSync("uid");
     page = 1;
+    //获取今天的消费情况
+    ibillService.getTodayCost({
+      uid: uid,
+      time: util.getCurFormatTime()
+    }, function (res) {
+      showTodayCost(res.data, that);
+    });
+
     ibillService.getBillList(uid, 1, this);
   },
 
@@ -66,12 +84,6 @@ Page({
     });
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
 
   /**
    * 跳转到记账界面
@@ -128,3 +140,19 @@ Page({
     })
   },
 })
+
+/**
+ * 显示今天的消费情况
+ */
+function showTodayCost(res, that) {
+  var cost = 0;
+  for (var i = 0; i < res.length; i++) {
+    cost += res[i].cost;
+  }
+
+  if (cost > 0) {
+    that.setData({
+      todayCost: cost.toFixed(2)
+    });
+  }
+}

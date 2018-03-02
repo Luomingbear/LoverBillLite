@@ -35,3 +35,6 @@
   <input class='margin_normal auto' placeholder="请输入备注（选填）" bindinput='inputNote'></input>
 </view>
 <button class='createBillBtn' hover-class="createBillBtnHover" bindtap='createBill'>记一笔</button>
+
+
+<template is="wxToast" data="{{...wxToastConfig}}"></template>

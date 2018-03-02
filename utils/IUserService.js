@@ -67,8 +67,8 @@ function bindLover(data, cb) {
       if (parse.code == SUCCEED) {
         typeof cb == 'function' && cb();
       } else {
-        wx.showToast({
-          title: parse.message,
+        getApp().wxToast({
+          title: result.message
         })
       }
     }
@@ -90,6 +90,13 @@ function emailLogin(email, password, avatar, nickname, that) {
   var md5Util = require("md5.js");
   var passwordMd5 = md5Util.hexMD5(password);
 
+  var data = {
+    email: email,
+    password: passwordMd5,
+    avatar: avatar,
+    nickname: nickname,
+  };
+  console.log(data);
   wx.request({
     method: "POST",
     url: getApp().baseUrl + "api/registerOrLogin.php",
@@ -97,14 +104,10 @@ function emailLogin(email, password, avatar, nickname, that) {
     header: {
       'content-type': 'application/x-www-form-urlencoded'
     },
-    data: {
-      email: email,
-      password: passwordMd5,
-      avatar: avatar,
-      nickname: nickname,
-    },
-    // dataType: "JSON",
+    data: data,
     success: function (res) {
+      if (res.data == null ||res.data =="")
+        return;
       var result = JSON.parse(res.data);
       console.log(res.data);
       if (result.code == SUCCEED) {
@@ -123,9 +126,9 @@ function emailLogin(email, password, avatar, nickname, that) {
           delta: 1
         })
       } else {
-        wx.showToast({
-          title: result.message,
-        });
+        getApp().wxToast({
+          title: result.message
+        })
       }
     }
   })

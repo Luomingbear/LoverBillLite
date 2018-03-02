@@ -8,3 +8,13 @@
   font-size: 10pt;
   color: gray;
 }
+
+.canvas {
+  width: 100%;
+  height: 200px;
+}
+
+.canvas_rect{
+  width: 100%;
+  height: 300px;
+}

@@ -1,4 +1,13 @@
 <wxs src="../utils/util.wxs" module="util" />
+<!-- 弹窗 -->
+<template name="wxToast">
+    <view class="wxToast_mask {{block ? 'wxToast_show' : ''}}" bindtap="hideToastFn" animation="{{animate}}" >
+        <div class="wxToast_content {{contentClass}}">
+            <image wx:if="{{img}}" class="wxToast_img {{imgClass}}" src="{{img}}" mode="scaleToFill"></image>
+            <text class="wxToastTitle">{{title}}</text>
+        </div>
+    </view>
+</template>
 
 <!-- 卡片模板 -->
 <template name="cardItem">
@@ -45,6 +54,9 @@
 
 <!-- 消费排行模板 -->
 <template name="costItem">
+  <block wx:if="{{index>0}}">
+    <view class='most_cost_line'></view>
+  </block>
   <view class='most_cost_layout'>
     <image class='image_normal' src='{{image}}'></image>
     <view class='vertical_layout auto'>

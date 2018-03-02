@@ -1,5 +1,8 @@
 //app.js
+var wxToast = require("utils/toast.js")
+
 App({
+  wxToast,
   onLaunch: function () {
     //调用API从本地缓存中获取数据
     var logs = wx.getStorageSync('logs') || []
@@ -24,7 +27,7 @@ App({
   },
 
   globalData: {
-    userInfo: null
+    userInfo: null,
   },
 
   baseUrl: "https://loverbill.2fun.xyz/",

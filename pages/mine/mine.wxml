@@ -1,4 +1,5 @@
 <!--pages/mine/mine.wxml-->
+<import src="../../template/temp.wxml" />
 <view class="container">
   <view class="heard_layout">
     <view bindtap="bindViewTap" class="userinfo">
@@ -40,3 +41,6 @@
   </scroll-view>
 
 </view>
+
+
+<template is="wxToast" data="{{...wxToastConfig}}"></template>

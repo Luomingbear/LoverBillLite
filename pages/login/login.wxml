@@ -1,4 +1,6 @@
 <!--pages/login/login.wxml-->
+
+<import src="../../template/temp.wxml" />
 <view class='vertical_layout center_main hint margin_normal'>
   <text class='margin_normal'>已经注册的用户可以直接登录</text>
   <text>未注册的用户点击登录会自动创建账号</text>
@@ -17,3 +19,5 @@
 <view class="part_line"></view>
 
 <button class="createBillBtn" hover-class="createBillBtnHover" bindtap="dLogin">登陆/注册</button>
+
+<template is="wxToast" data="{{...wxToastConfig}}"></template>

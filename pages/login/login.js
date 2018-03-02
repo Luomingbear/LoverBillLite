@@ -20,15 +20,14 @@ Page({
 
   dLogin: function (event) {
     if (email == null || email == "") {
-      wx.showToast({
-        title: '请输入邮箱',
-        image: "../../image/warming.png"
-      })
+      getApp().wxToast({
+        title: '请输入邮箱'
+      });
     } else if (password == null || password == "") {
-      wx.showToast({
-        title: '请输入密码',
-        image: "../../image/warming.png"
-      })
+
+      getApp().wxToast({
+        title: '请输入密码'
+      });
     }
 
     wx.getUserInfo({

@@ -191,7 +191,7 @@ function showMonth(res) {
   var series = new Array();
   for (var i = 0, len = res.length; i < len; i++) {
     var item = {
-      color: getColor(i),
+      color: "" + getColor(i),
       name: res[i].tag,
       data: res[i].cost
     }
@@ -205,7 +205,7 @@ function showMonth(res) {
       animation: true,
       series: series,
       width: windowWidth,
-      height: 200,
+      height: 300,
       dataLabel: true,
     });
   } else {
@@ -216,15 +216,15 @@ function showMonth(res) {
  * 获取颜色
  */
 function getColor(index) {
-  var colors = new Array([
-    "#909090",
-    "#f09060",
-    "#ffd890",
-    "#f0f0d8",
-    "#f0d8d8",
-    "#ddf0e0",
-    "#e2e5f0"
-  ])
+  var colors = new Array(
+    "#FF8A8D",
+    "#FFBEC0",
+    "#BF9B7D",
+    "#FFCEA7",
+    "#FFDBBE",
+    "#BF7DA4",
+    "#FFA7DB"
+  )
 
   if (index < colors.length || index >= 0) {
     return colors[index];

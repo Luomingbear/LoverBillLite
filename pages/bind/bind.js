@@ -30,11 +30,12 @@ Page({
     wx.showModal({
       title: "绑定恋人",
       content: '确定要与ID为' + loverB + "的用户绑定吗？",
+      confirmColor: "#ff7073",
       success: function (res) {
         if (res.confirm) {
           util.bindLover(bindData, function (res) {
-            wx.showToast({
-              title: '绑定成功',
+            getApp().wxToast({
+              title: "绑定成功"
             });
             wx.navigateBack({
               delta: 1

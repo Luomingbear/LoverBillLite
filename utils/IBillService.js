@@ -43,8 +43,8 @@ function getBillList(uid, page, that) {
         }
 
       } else {
-        wx.showToast({
-          title: parse.message,
+        getApp().wxToast({
+          title: parse.message
         })
       }
 
@@ -111,8 +111,8 @@ function createBill(data, cb) {
       if (parse.code == SUCCEED) {
         typeof cb == 'function' && cb();
       } else {
-        wx.showToast({
-          title: parse.message,
+        getApp().wxToast({
+          title: parse.message
         })
       }
     }
@@ -137,8 +137,8 @@ function deleteBill(data, cb) {
       if (parse.code == SUCCEED) {
         typeof cb == 'function' && cb();
       } else {
-        wx.showToast({
-          title: parse.message,
+        getApp().wxToast({
+          title: parse.message
         })
       }
     }
@@ -163,8 +163,34 @@ function analysis(data, cb) {
       if (parse.code == SUCCEED) {
         typeof cb == 'function' && cb(parse);
       } else {
-        wx.showToast({
-          title: parse.message,
+        getApp().wxToast({
+          title: parse.message
+        })
+      }
+    }
+  });
+}
+
+/**
+ * 获取今日的消费情况
+ */
+function getTodayCost(data,cb) {
+  wx.request({
+    method: "POST",
+    dataType: "JSON",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded'
+    },
+    url: getApp().baseUrl + "api/getTodayCostDetail.php",
+    data: data,
+    success: function (res) {
+      var parse = JSON.parse(res.data);
+      console.log(parse);
+      if (parse.code == SUCCEED) {
+        typeof cb == 'function' && cb(parse);
+      } else {
+        getApp().wxToast({
+          title: parse.message
         })
       }
     }
@@ -177,4 +203,5 @@ module.exports = {
   createBill: createBill,
   deleteBill: deleteBill,
   analysis: analysis,
+  getTodayCost: getTodayCost,
 }

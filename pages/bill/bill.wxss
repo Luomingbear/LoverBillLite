@@ -1,2 +1,20 @@
 /* pages/bill/bill.wxss */
 @import "../../template/temp.wxss";
+
+.today_layout{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.today_money {
+  font-size: 22pt;
+  color: #333;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+.today_tag{
+  font-size: 10pt;
+  color: #666;
+}

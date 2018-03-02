@@ -74,8 +74,8 @@ Page({
   },
 
   showHi: function (res) {
-    wx.showToast({
-      title: res,
+    getApp().wxToast({
+      title: res
     })
   },
 
@@ -126,10 +126,9 @@ Page({
    */
   createBill: function (res) {
     if (money == 0) {
-      wx.showToast({
-        title: '请输入金额',
-        icon: "none"
-      })
+      getApp().wxToast({
+        title: '请输入金额'
+      });
       return;
     }
 

@@ -161,6 +161,14 @@
   align-items: center;
 }
 
+.most_cost_line{
+  height: 1px;
+  width: 90%;
+  margin: 0 5%;
+  display: flex;
+  background: #eff1f4;
+}
+
 .lover_money {
   font-size: 12pt;
   color: #333;
