@@ -3,9 +3,6 @@
  */
 function convertTime(time) {
   var s = "" + time;
-  console.log(s.replace("-", "/"));
-  
-  // var arr = time.replace(/-/g, "/");
   var date = getDate(s.replace("-", "/").replace('-','/'));
   var curDate = getDate();
 

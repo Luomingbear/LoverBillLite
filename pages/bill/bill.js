@@ -151,9 +151,7 @@ function showTodayCost(res, that) {
     cost += res[i].cost;
   }
 
-  if (cost > 0) {
-    that.setData({
-      todayCost: cost.toFixed(2)
-    });
-  }
+  that.setData({
+    todayCost: cost.toFixed(2)
+  });
 }

@@ -209,7 +209,9 @@ function showMonth(res) {
       dataLabel: true,
     });
   } else {
-
+    monthCanvas.updateData({
+      series: series,
+    })
   }
 }
 /**
@@ -293,7 +295,10 @@ function showHalfYear(res) {
       }
     });
   } else {
-
+    halfYearCanvas.updateData({
+      categories: labs,
+      series: series,
+    })
   }
 }
 
@@ -323,6 +328,7 @@ function showLover(res, that) {
   }
 
   that.setData({
-    loverList: list
+    loverList: list,
+    showLover: true
   });
 }

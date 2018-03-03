@@ -15,7 +15,7 @@
   margin-top: 20rpx;
 }
 
-.canvas_rect{
+.canvas_rect {
   width: 100%;
   height: 300px;
   margin-top: 20rpx;
