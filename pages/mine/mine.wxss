@@ -14,7 +14,7 @@
   text-align: center;
 }
 
-.userinfo-avatar {
+.userinfo_avatar {
   width: 200rpx;
   height: 200rpx;
   margin: 20rpx;
@@ -24,12 +24,52 @@
 .nickname {
   font-size: 18pt;
   font-weight: bold;
-  color: #333
+  color: #333;
 }
 
 .idtext {
   font-size: 10pt;
-  color: #666
+  color: #666;
+}
+
+.heard_layout_s {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50rpx 0;
+  width: 25%;
+  overflow: hidden;
+  background: #eff1f4;
+}
+
+.userinfo_s {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.userinfo_avatar_s {
+  width: 100rpx;
+  height: 100rpx;
+  margin: 10rpx;
+  border-radius: 50%;
+}
+
+.nickname_s {
+  font-size: 12pt;
+  font-weight: bold;
+  color: #333;
+  overflow: hidden;
+}
+
+.idtext_s {
+  font-size: 8pt;
+  color: #666;
+}
+
+.bind_text{
+  font-size: 8pt;
+  color: #666;
 }
 
 .item_layout {
@@ -37,7 +77,7 @@
   flex-direction: row;
   padding: 30rpx 20rpx;
   justify-content: center;
-  align-items: Center;
+  align-items: center;
 }
 
 .icon_left {

@@ -23,8 +23,8 @@ function getBillList(uid, page, that) {
       page: page
     },
     success: function (res) {
-      // console.log(res.data);
       var parse = JSON.parse(res.data);
+      console.log(parse);
       if (parse.code == SUCCEED) {
         if (page != 1) {
           //加载更多

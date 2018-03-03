@@ -16,7 +16,8 @@ Page({
     wx.getStorage({
       key: 'uid',
       success: function (res) {
-        if (that.data.billList.length > 0) {
+        if (that.data.billList.length > 0
+          && !getApp().globalData.created) {
           console.log("不刷新");
           return;
         }
@@ -31,6 +32,7 @@ Page({
         });
         //获取账单列表
         ibillService.getBillList(res.data, 1, that);
+        getApp().globalData.created = false;
       },
       fail: function (res) {
         that.setData({
@@ -123,12 +125,12 @@ Page({
    * 点击删除的按钮
    */
   onDeleteClick: function (res) {
-    console.log("点击" + res);
+    console.log(res);
     var data = {
       'bid': res.currentTarget.id,
       'uid': wx.getStorageSync("uid")
     };
-    console.log(data);
+
     var that = this;
     wx.showModal({
       title: '确定删除该条记账吗？',

@@ -150,8 +150,10 @@ Page({
       "note": note
     };
 
+    var that = this;
     var ibillService = require("../../utils/IBillService.js");
     ibillService.createBill(data, function () {
+      getApp().globalData.created = true;
       wx.setStorageSync("create", true);
       wx.switchTab({
         url: '../bill/bill',

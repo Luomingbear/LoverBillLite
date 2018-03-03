@@ -21,6 +21,13 @@ Page({
   },
 
   bindLover: function (res) {
+    if (loverB == null || loverB == "") {
+      getApp().wxToast({
+        title: "请输入对方的ID"
+      })
+      return;
+    }
+
     var util = require("../../utils/IUserService.js");
     var bindData = {
       loverA: wx.getStorageSync("uid"),

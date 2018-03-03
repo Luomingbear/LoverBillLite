@@ -183,10 +183,11 @@
 
 .lover_nickname {
   font-size: 16pt;
-  flex: auto;
   color: #333;
+  width: 210rpx;
   text-align: center;
   font-weight: bold;
+  overflow: hidden;
 }
 
 .lover_center_line {

@@ -42,21 +42,25 @@ Page({
         util.analysis(data, function (res) {
           console.log(res);
           showCostTitle(res.data.halfYear, that);
-          showWeek(res.data.week);
-          showMonth(res.data.month);
+          showWeek(res.data.week, that);
+          showMonth(res.data.month, that);
           showMostCost(res.data.most, that);
-          showHalfYear(res.data.halfYear);
+          showHalfYear(res.data.halfYear, that);
           showLover(res.data.halfYear, that);
         })
       },
+      fail: function () {
+        that.setData({
+          monthCost: "0.00",
+          difMonthCost: "0.00",
+          showWeek: false,
+          showMonth: false,
+          showMonthMost: false,
+          showHalfYear: false,
+          showLover: false
+        })
+      }
     })
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
 
   },
 
@@ -138,7 +142,19 @@ function showCostTitle(res, that) {
 /**
  * 显示最近一周的消费
  */
-function showWeek(res) {
+function showWeek(res, that) {
+  if (res == null) {
+    that.setData({
+      showWeek: false
+    })
+
+    return;
+  } else {
+    that.setData({
+      showWeek: true
+    })
+  }
+
   var series = [{
     name: '总消费',
     color: "#ff7073",
@@ -187,7 +203,18 @@ function showWeek(res) {
 /**
  * 显示本月的消费
  */
-function showMonth(res) {
+function showMonth(res, that) {
+  if (res == null || res.length == 0) {
+    that.setData({
+      showMonth: false
+    })
+    return;
+  } else {
+    that.setData({
+      showMonth: true
+    })
+  }
+
   var series = new Array();
   for (var i = 0, len = res.length; i < len; i++) {
     var item = {
@@ -238,15 +265,33 @@ function getColor(index) {
  * 显示本月消费排行
  */
 function showMostCost(list, that) {
+  if (list == null || list.length == 0) {
+    that.setData({
+      showMonthMost: false
+    })
+    return;
+  }
   that.setData({
-    mostList: list
+    mostList: list,
+    showMonthMost: true
   });
 }
 
 /**
  * 显示最近半年的消费趋势
  */
-function showHalfYear(res) {
+function showHalfYear(res, that) {
+  if (res == null || res.length == 0) {
+    that.setData({
+      showHalfYear: false
+    })
+    return;
+  } else {
+    that.setData({
+      showHalfYear: true
+    })
+  }
+
   var labs = new Array();
   var list = new Array();
   for (var len = res.length - 1, i = len; i >= 0; i--) {
@@ -306,15 +351,25 @@ function showHalfYear(res) {
  * 显示恋人的消费情况
  */
 function showLover(res, that) {
-  if (res == null || res.length == 0)
-    return;
-
-  var month = res[0];
-  var lastMonth = res[1];
-  if (month.lover.length == 1) {
-    //隐藏界面
+  console.log(res);
+  if (res == null || res.length == 0) {
+    that.setData({
+      showLover: false
+    })
     return;
   }
+
+
+  var month = res[0];
+  if (month.lover == null || month.lover.length <= 1) {
+    //隐藏界面
+    that.setData({
+      showLover: false
+    })
+    return;
+  }
+
+  var lastMonth = res[1];
 
   var list = new Array();
   for (var i = 0; i < month.lover.length; i++) {
@@ -326,9 +381,8 @@ function showLover(res, that) {
 
     list.push(item);
   }
-
   that.setData({
     loverList: list,
     showLover: true
-  });
+  })
 }

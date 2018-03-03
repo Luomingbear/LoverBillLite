@@ -3,7 +3,7 @@
  */
 function convertTime(time) {
   var s = "" + time;
-  var date = getDate(s.replace("-", "/").replace('-','/'));
+  var date = getDate(s.replace("-", "/").replace('-', '/'));
   var curDate = getDate();
 
   if (curDate.getFullYear() == date.getFullYear() && curDate.getMonth() == date.getMonth() && curDate.getDate() == date.getDate()) {
@@ -30,6 +30,23 @@ function getYear() {
 function getMonth() {
   var curDate = getDate();
   return (curDate.getMonth() + 1) + "月";
+}
+
+/**
+ *  判断uid是不是本人
+ */
+function isUser(uid) {
+  wx.getStorage({
+    key: 'uid',
+    success: function (res) {
+      if (res.data == uid)
+        return true;
+      return false;
+    },
+    fail: function () {
+      return false;
+    }
+  })
 }
 
 module.exports = {

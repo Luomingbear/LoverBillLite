@@ -8,38 +8,11 @@ Page({
    */
   data: {
     userInfo: {
-      avatar: "../../image/logo.png",
-      nickname: "暂未登录",
-      uid: "0000"
+      nickname:"暂未登录",
+      avatar:"../../image/logo.png"
     },
+    bindLoverText: "绑定对象",
     loginText: "立即登录"
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    var that = this
-    wx.getStorage({
-      key: 'userInfo',
-      success: function (res) {
-        console.log(res.data)
-        if (res.data == null) {
-          wx.navigateTo({
-            url: '../login/login'
-          })
-        } else {
-          that.setData({
-            userInfo: res.data
-          })
-        }
-      }, fail: function (res) {
-        wx.navigateTo({
-          url: '../login/login'
-        })
-      }
-    })
-
   },
 
   onShow: function () {
@@ -47,7 +20,13 @@ Page({
     wx.getStorage({
       key: 'userInfo',
       success: function (res) {
-        console.log(res.data)
+        //先判断本地是否有恋人的数据,有的话直接使用，否则请求网络
+        if (getApp().globalData.loverInfo == null) {
+          //初始化数据
+          mineInit(that);
+        }
+
+        //修改ui
         if (res.data != null) {
           that.setData({
             userInfo: res.data,
@@ -55,10 +34,27 @@ Page({
           })
         }
       },
+      fail: function (res) {
+        wx.showModal({
+          title: '您暂未登录',
+          confirmColor: "#ff7073",
+          confirmText: "登录",
+          success: function (res) {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: '../login/login'
+              })
+            }
+          }
+        })
+      }
     })
 
   },
 
+  /**
+   * 绑定对象
+   */
   bindTap: function (e) {
     wx.getStorage({
       key: 'userInfo',
@@ -75,8 +71,18 @@ Page({
           })
         }
       }, fail: function (res) {
-        wx.navigateTo({
-          url: '../login/login'
+        wx.showModal({
+          title: '您当前暂未登录',
+          content: '',
+          confirmText: "登录",
+          confirmColor: "#ff7073",
+          success: function (res) {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: '../login/login'
+              })
+            }
+          }
         })
       }
     })
@@ -124,9 +130,8 @@ Page({
 
 function logout(that) {
   wx.showModal({
-    title: '退出登录',
+    title: '确定退出登录吗？',
     confirmColor: "#ff7073",
-    content: '确定退出登录吗？点击确定将清除用户在本地保留的数据',
     success: function (res) {
       if (res.confirm) {
         wx.clearStorage()
@@ -140,7 +145,10 @@ function logout(that) {
             avatar: "../../image/logo.png",
             nickname: "暂未登录",
             uid: "0000"
-          }
+          },
+          loginText: "立即登录",
+          loverInfo: null,
+
         })
       }
 
@@ -152,4 +160,38 @@ function login(that) {
   wx.navigateTo({
     url: '../login/login',
   })
+}
+
+/**
+ * 初始化我界面数据
+ */
+function mineInit(that) {
+  var util = require("../../utils/IUserService.js");
+  util.mineInit(function (res) {
+    showMineUi(res.data, that);
+  });
+}
+
+/**
+ * 显示ui
+ */
+function showMineUi(list, that) {
+  if (list == null) {
+    return;
+  }
+
+  if (list['lover'] != null) {
+    //绑定了对象
+    that.setData({
+      userInfo: list['user'],
+      loverInfo: list['lover'],
+      bindLoverText: "更改绑定"
+    });
+    getApp().globalData.loverInfo = list['lover'];
+  } else {
+    that.setData({
+      userInfo: list['user'],
+      bindLoverText: "绑定对象"
+    });
+  }
 }

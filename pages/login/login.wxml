@@ -18,6 +18,6 @@
 
 <view class="part_line"></view>
 
-<button class="createBillBtn" hover-class="createBillBtnHover" bindtap="dLogin">登陆/注册</button>
+<button class="createBillBtn" hover-class="createBillBtnHover" bindtap="dLogin">登录/注册</button>
 
 <template is="wxToast" data="{{...wxToastConfig}}"></template>

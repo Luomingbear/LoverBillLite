@@ -23,30 +23,19 @@ Page({
       getApp().wxToast({
         title: '请输入邮箱'
       });
+      return;
     } else if (password == null || password == "") {
-
       getApp().wxToast({
         title: '请输入密码'
       });
+      return;
     }
 
-    wx.getUserInfo({
-      success: function (res) {
-        console.log(res);
-        var userinfo = res.userInfo;
-        wx.setStorage({
-          key: 'userInfo',
-          data: {
-            nickname: userinfo.nickName,
-            avatar: userinfo.avatarUrl,
-            uid: "00000"
-          },
-        })
-        var iuserService = require("../../utils/IUserService.js");
-        iuserService.emailLogin(email, password, userinfo.avatarUrl, userinfo.nickName, this);
-      }
-    })
-
+    getApp().getUserInfo(function (res) {
+      console.log(res);
+      var iuserService = require("../../utils/IUserService.js");
+      iuserService.emailLogin(email, password, res.avatarUrl, res.nickName, this);
+    });
   },
 
   emailInput: function (event) {
@@ -65,13 +54,11 @@ Page({
    * 微信登陆
    */
   weixinLoginTap: function () {
-    wx.getUserInfo({
-      success: function (res) {
-        var util = require("../../utils/util.js")
-        var that = this
-        util.weixinLogin(res.userInfo, that)
-      }
-    })
+    getApp().getUserInfo(function (res) {
+      var util = require("../../utils/util.js")
+      var that = this
+      util.weixinLogin(res, that)
+    });
 
   }
 })

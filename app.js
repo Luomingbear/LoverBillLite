@@ -28,6 +28,8 @@ App({
 
   globalData: {
     userInfo: null,
+    loverInfo: null,
+    created: false //刚创建账单之后变为true ，用来通知更新账单
   },
 
   baseUrl: "https://loverbill.2fun.xyz/",

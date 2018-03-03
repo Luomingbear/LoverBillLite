@@ -1,12 +1,12 @@
 <wxs src="../utils/util.wxs" module="util" />
 <!-- 弹窗 -->
 <template name="wxToast">
-    <view class="wxToast_mask {{block ? 'wxToast_show' : ''}}" bindtap="hideToastFn" animation="{{animate}}" >
-        <div class="wxToast_content {{contentClass}}">
-            <image wx:if="{{img}}" class="wxToast_img {{imgClass}}" src="{{img}}" mode="scaleToFill"></image>
-            <text class="wxToastTitle">{{title}}</text>
-        </div>
-    </view>
+  <view class="wxToast_mask {{block ? 'wxToast_show' : ''}}" bindtap="hideToastFn" animation="{{animate}}">
+    <div class="wxToast_content {{contentClass}}">
+      <image wx:if="{{img}}" class="wxToast_img {{imgClass}}" src="{{img}}" mode="scaleToFill"></image>
+      <text class="wxToastTitle">{{title}}</text>
+    </div>
+  </view>
 </template>
 
 <!-- 卡片模板 -->
@@ -15,12 +15,14 @@
     <view class='card_top_layout'>
       <view style='width :3px;height:12pt; background:{{color}};'></view>
       <text class='nickname auto' style='color:{{color}}'>{{nickname}}</text>
-      <text class='tag' bindtap='onDeleteClick' id='{{bid}}'>删除</text>
+      <block wx:if="{{me}}">
+        <text class='tag' bindtap='onDeleteClick' id='{{bid}}'>删除</text>
+      </block>
     </view>
     <view class='card_bottom_layout'>
       <image class='image_normal' src='{{image}}'></image>
       <view class="vertical_layout auto" style="margin-left:10rpx;">
-        <text class='money'>¥{{cost}}</text>
+        <text class='money'>{{cost}}</text>
         <text class='tag'>{{note==""?'暂无备注':note}}</text>
       </view>
       <text class='chargeTime'>{{util.convertTime(time)}}</text>

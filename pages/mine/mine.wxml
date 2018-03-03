@@ -1,46 +1,55 @@
 <!--pages/mine/mine.wxml-->
 <import src="../../template/temp.wxml" />
-<view class="container">
+
+<!-- 绑定了对象 -->
+<block wx:if="{{loverInfo}}">
+  <view class='horizontal_layout center_main center_cross' style='background:#eff1f4;height:35%'>
+    <view class="heard_layout_s">
+      <view bindtap="bindViewTap" class="userinfo">
+        <image class="userinfo_avatar_s" src="{{userInfo.avatar}}"></image>
+        <text class="nickname_s">{{userInfo.nickname}}</text>
+        <text class="idtext_s">ID:{{userInfo.uid}}</text>
+      </view>
+    </view>
+    <text class='bind_text'>已绑定</text>
+    <view class="heard_layout_s">
+      <view bindtap="bindViewTap" class="userinfo">
+        <image class="userinfo_avatar_s" src="{{loverInfo.avatar}}"></image>
+        <text class="nickname_s">{{loverInfo.nickname}}</text>
+        <text class="idtext_s">ID:{{loverInfo.uid}}</text>
+      </view>
+    </view>
+  </view>
+</block>
+
+<!-- 没有绑定对象 -->
+<block wx:else>
   <view class="heard_layout">
     <view bindtap="bindViewTap" class="userinfo">
-      <image class="userinfo-avatar" src="{{userInfo.avatar}}"></image>
+      <image class="userinfo_avatar" src="{{userInfo.avatar}}"></image>
       <text class="nickname">{{userInfo.nickname}}</text>
       <text class="idtext">ID:{{userInfo.uid}}</text>
     </view>
   </view>
+</block>
 
-
-  <scroll-view scroll-y style="height :100%">
-    <view class="item_layout" style="background:{{buttonBgo}}" bindtap="bindTap">
-      <image class="icon_left"></image>
-      <view class="title_text">
-        <text>绑定对象</text>
-      </view>
-      <image class="icon_right"></image>
-    </view>
-
-    <!-- <view class="part_line"></view>
-
-    <view class="item_layout" style="background:{{buttonBgt}}" bindtap="myTagTap" bindtouchstart="touchStart2" bindtouchend="touchEnd">
-      <image src="../../image/footmark.png" class="icon_left"></image>
-      <view class="title_text"><text>我的标签</text></view>
-      <image src="../../image/more.png" class="icon_right"></image>
-    </view> -->
-
-    <view class="part_line"></view>
-
-    <view class="item_layout" style="background:{{buttonBgr}}" bindtap="logoutTap">
-      <image class="icon_left"></image>
-      <view class="title_text">
-        <text>{{loginText}}</text>
-      </view>
-    </view>
-
-    <view class="part_line"></view>
-
-  </scroll-view>
-
+<view class="item_layout" style="background:{{buttonBgo}}" bindtap="bindTap">
+  <image class="icon_left"></image>
+  <view class="title_text">
+    <text>{{bindLoverText}}</text>
+  </view>
+  <image class="icon_right"></image>
 </view>
 
+<view class="part_line"></view>
+
+<view class="item_layout" style="background:{{buttonBgr}}" bindtap="logoutTap">
+  <image class="icon_left"></image>
+  <view class="title_text">
+    <text>{{loginText}}</text>
+  </view>
+</view>
+
+<view class="part_line"></view>
 
 <template is="wxToast" data="{{...wxToastConfig}}"></template>
