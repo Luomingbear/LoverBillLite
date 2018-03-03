@@ -8,8 +8,9 @@ Page({
    */
   data: {
     userInfo: {
-      nickname:"暂未登录",
-      avatar:"../../image/logo.png"
+      nickname: "暂未登录",
+      avatar: "../../image/logo.png",
+      uid: "0000"
     },
     bindLoverText: "绑定对象",
     loginText: "立即登录"
@@ -20,19 +21,25 @@ Page({
     wx.getStorage({
       key: 'userInfo',
       success: function (res) {
-        //先判断本地是否有恋人的数据,有的话直接使用，否则请求网络
-        if (getApp().globalData.loverInfo == null) {
-          //初始化数据
-          mineInit(that);
-        }
-
-        //修改ui
+        //获取本地的数据
         if (res.data != null) {
           that.setData({
             userInfo: res.data,
             loginText: "退出登录"
           })
         }
+
+        //先判断本地是否有恋人的数据,有的话直接使用，否则请求网络
+        if (getApp().globalData.loverInfo == null) {
+          //初始化数据
+          mineInit(that);
+        }
+        else {
+          that.setData({
+            loverInfo: getApp().globalData.loverInfo
+          })
+        }
+
       },
       fail: function (res) {
         wx.showModal({
