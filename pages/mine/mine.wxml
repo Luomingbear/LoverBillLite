@@ -32,7 +32,7 @@
     <view class="item_layout" style="background:{{buttonBgr}}" bindtap="logoutTap">
       <image class="icon_left"></image>
       <view class="title_text">
-        <text>退出登陆</text>
+        <text>{{loginText}}</text>
       </view>
     </view>
 

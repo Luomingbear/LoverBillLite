@@ -8,10 +8,11 @@ Page({
    */
   data: {
     userInfo: {
-      avatar: "",
-      nickname: "点点",
+      avatar: "../../image/logo.png",
+      nickname: "暂未登录",
       uid: "0000"
     },
+    loginText: "立即登录"
   },
 
   /**
@@ -49,7 +50,8 @@ Page({
         console.log(res.data)
         if (res.data != null) {
           that.setData({
-            userInfo: res.data
+            userInfo: res.data,
+            loginText: "退出登录"
           })
         }
       },
@@ -104,33 +106,50 @@ Page({
 
   },
 
-  // 退出登陆
+  // 退出登录
   logoutTap: function (e) {
     var that = this;
-    wx.showModal({
-      title: '退出登陆',
-      content: '确定退出登陆吗？点击确定将清除用户在本地保留的数据',
+
+    wx.getStorage({
+      key: 'uid',
       success: function (res) {
-        if (res.confirm) {
-          wx.clearStorage()
-
-          getApp().wxToast({
-            title: '退出成功'
-          });
-          
-          that.setData({
-            userInfo: {
-              avatar: "https://image.storyshu.com/storyshu_avatar.jpg",
-              nickname: "点点",
-              uid: "0000"
-            }
-          })
-        }
-
+        logout(that);
+      },
+      fail: function () {
+        login(that);
       }
-    })
-    wx.navigateTo({
-      url: '../setting/setting',
     })
   }
 })
+
+function logout(that) {
+  wx.showModal({
+    title: '退出登录',
+    confirmColor: "#ff7073",
+    content: '确定退出登录吗？点击确定将清除用户在本地保留的数据',
+    success: function (res) {
+      if (res.confirm) {
+        wx.clearStorage()
+
+        getApp().wxToast({
+          title: '退出成功'
+        });
+
+        that.setData({
+          userInfo: {
+            avatar: "../../image/logo.png",
+            nickname: "暂未登录",
+            uid: "0000"
+          }
+        })
+      }
+
+    }
+  })
+}
+
+function login(that) {
+  wx.navigateTo({
+    url: '../login/login',
+  })
+}

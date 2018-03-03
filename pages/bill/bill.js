@@ -33,6 +33,10 @@ Page({
         ibillService.getBillList(res.data, 1, that);
       },
       fail: function (res) {
+        that.setData({
+          billList: [],
+          todayCost: "0.00"
+        });
         wx.showModal({
           title: '是否前往登录',
           content: '',
