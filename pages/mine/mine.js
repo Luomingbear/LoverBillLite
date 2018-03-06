@@ -154,6 +154,7 @@ function logout(that) {
             uid: "0000"
           },
           loginText: "立即登录",
+          bindLoverText: "绑定对象",
           loverInfo: null,
 
         })

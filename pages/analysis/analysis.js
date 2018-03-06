@@ -128,13 +128,13 @@ function showCostTitle(res, that) {
     lastMonthCost = curMonthCost - lastMonthCost;
 
     that.setData({
-      monthCost: "" + curMonthCost,
-      difMonthCost: "" + lastMonthCost
+      monthCost: "" + curMonthCost.toFixed(2),
+      difMonthCost: "" + lastMonthCost.toFixed(2)
     });
   } else {
     that.setData({
-      monthCost: "" + curMonthCost,
-      difMonthCost: "" + curMonthCost
+      monthCost: "" + curMonthCost.toFixed(2),
+      difMonthCost: "" + curMonthCost.toFixed(2)
     });
   }
 }
@@ -373,10 +373,11 @@ function showLover(res, that) {
 
   var list = new Array();
   for (var i = 0; i < month.lover.length; i++) {
+    var dif = month.lover[i].cost - lastMonth.lover[i].cost;
     var item = {
       nickname: month.lover[i].nickname,
-      cost: month.lover[i].cost,
-      difCost: month.lover[i].cost - lastMonth.lover[i].cost
+      cost: month.lover[i].cost.toFixed(2),
+      difCost: dif.toFixed(2)
     }
 
     list.push(item);
