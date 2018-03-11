@@ -2,9 +2,10 @@
 @import "../../template/temp.wxss";
 
 .title_text {
+  display: block;
   border-left: 3px solid lightgray;
   padding-left: 3pt;
-  margin: 50rpx 20rpx;
+  margin: 20rpx;
   font-size: 10pt;
   color: #333;
 }

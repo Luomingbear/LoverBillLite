@@ -126,15 +126,15 @@ function showCostTitle(res, that) {
 
     //计算变化值
     lastMonthCost = curMonthCost - lastMonthCost;
-
+    lastMonthCost = lastMonthCost.toFixed(2);
     that.setData({
       monthCost: "" + curMonthCost.toFixed(2),
-      difMonthCost: "" + lastMonthCost.toFixed(2)
+      difMonthCost: lastMonthCost > 0 ? ("+" + lastMonthCost) : (lastMonthCost)
     });
   } else {
     that.setData({
       monthCost: "" + curMonthCost.toFixed(2),
-      difMonthCost: "" + curMonthCost.toFixed(2)
+      difMonthCost: "+" + curMonthCost.toFixed(2)
     });
   }
 }
@@ -248,11 +248,11 @@ function getColor(index) {
   var colors = new Array(
     "#FF8A8D",
     "#FFBEC0",
-    "#BF9B7D",
-    "#FFCEA7",
+    "#FFBE8A",
     "#FFDBBE",
-    "#BF7DA4",
-    "#FFA7DB"
+    "#FF8ACF",
+    "#FFA7DB",
+    "#A62D30"
   )
 
   if (index < colors.length || index >= 0) {
@@ -374,10 +374,11 @@ function showLover(res, that) {
   var list = new Array();
   for (var i = 0; i < month.lover.length; i++) {
     var dif = month.lover[i].cost - lastMonth.lover[i].cost;
+    dif = dif.toFixed(2);
     var item = {
       nickname: month.lover[i].nickname,
       cost: month.lover[i].cost.toFixed(2),
-      difCost: dif.toFixed(2)
+      difCost: dif > 0 ? ("+" + dif) : (dif)
     }
 
     list.push(item);

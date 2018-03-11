@@ -20,16 +20,20 @@
 </view>
 
 <block wx:if="{{showWeek}}">
+  <view class='part_line'></view>
   <text class='title_text'>最近一周消费情况</text>
   <canvas canvas-id="weekCanvas" disable-scroll="true" class="canvas"></canvas>
 </block>
 
+
 <block wx:if="{{showMonth}}">
+  <view class='part_line'></view>
   <text class='title_text'>本月各类别消费情况</text>
   <canvas canvas-id="monthCanvas" disable-scroll="true" class="canvas_rect"></canvas>
 </block>
 
 <block wx:if="{{showMonthMost}}">
+  <view class='part_line'></view>
   <text class='title_text'>本月单笔消费排行</text>
   <view wx:for="{{mostList}}" wx:key="{{...item.index}}">
     <template is="costItem" data="{{...item}}">
@@ -37,12 +41,16 @@
   </view>
 </block>
 
+
 <block wx:if="{{showHalfYear}}">
+  <view class='part_line'></view>
   <text class='title_text'>近半年消费走势</text>
   <canvas canvas-id="halfYearCanvas" disable-scroll="true" class="canvas"></canvas>
 </block>
 
+
 <block wx:if="{{showLover}}">
+  <view class='part_line'></view>
   <text class='title_text'>本月双方消费比例</text>
   <view wx:for="{{loverList}}" wx:key="{{...item.index}}">
     <template is="loverCostItem" data="{{...item}}">

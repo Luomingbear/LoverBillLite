@@ -59,7 +59,7 @@
 }
 
 .part_line {
-  height: 10rpx;
+  height: 15rpx;
   display: flex;
   background: #eff1f4;
 }
