@@ -27,7 +27,20 @@ function getCurHMS() {
   return hour + ":" + minute + ":" + second
 }
 
+/**
+ * 是否是正确的邮箱地址
+ */
+function isEmail(email) {
+  if (email == null || email == "") {
+    return false;
+  }
+
+  var patt = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  return patt.test(email);
+}
+
 module.exports = {
   getCurFormatTime: getCurFormatTime,
   getCurHMS: getCurHMS,
+  isEmail: isEmail,
 }

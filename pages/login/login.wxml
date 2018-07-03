@@ -20,4 +20,8 @@
 
 <button class="createBillBtn" hover-class="createBillBtnHover" bindtap="dLogin">登录/注册</button>
 
+<text class="text_middle font_small color_gray">或者</text>
+
+<button class="wxLoginBtn" hover-class="wxLoginBtnHover" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" bindtap="weixinLoginTap">微信登录</button>
+
 <template is="wxToast" data="{{...wxToastConfig}}"></template>

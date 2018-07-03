@@ -7,6 +7,37 @@ var ERROR = 500
  * 微信登录
  */
 function weixinLogin(userInfo, that) {
+  wxLogin(userInfo, function (res) {
+    if (res == null || res.data == null || res.data == "") {
+      return;
+    }
+    var parse = JSON.parse(res.data)
+    console.log(parse);
+    wx.setStorage({
+      key: 'dId',
+      data: parse.data.userId,
+    });
+    var userInfo = {
+      userId: parse.data.userId,
+      nickname: parse.data.nickname,
+      avatar: parse.data.avatar
+    };
+    wx.setStorage({
+      key: 'userInfo',
+      data: userInfo,
+    });
+  });
+}
+
+/**
+ * 将用户的信息上传到服务器换取openId等 注册
+ */
+function wxLogin(userInfo, cb) {
+  if (userInfo == null) {
+    return;
+  }
+
+  console.debug(userInfo);
   wx.login({
     success: function (res) {
       wx.request({
@@ -22,33 +53,15 @@ function weixinLogin(userInfo, that) {
         },
         method: "POST",
         dataType: "JSON",
-        success: function (res) {
-          // {"session_key":"r97uXNiejogjb38Sqk601A==","expires_in":7200,"openid":"odezs0GNoeMm_T6mVCbfIVdHOkYw"}
-          console.log(res.data)
-          var parse = JSON.parse(res.data)
-          wx.setStorage({
-            key: 'dId',
-            data: parse.data.userId,
-          })
-          var userInfo = {
-            userId: parse.data.userId,
-            nickname: parse.data.nickname,
-            avatar: parse.data.avatar
-          }
-          wx.setStorage({
-            key: 'userInfo',
-            data: userInfo,
-          })
-
-          //关闭当前页面，返回
-          wx.navigateBack({
-            delta: 1
-          })
+        success: function (e) {
+          typeof cb == 'function' && cb(e);
         }
       })
     }
   })
 }
+
+
 /**
  * 绑定对象
  */
@@ -143,7 +156,7 @@ function emailLogin(email, password, avatar, nickname, that) {
           avatar: avatar,
           uid: result.data.uid
         });
-        
+
         //返回刚才的页面
         wx.navigateBack({
           delta: 1

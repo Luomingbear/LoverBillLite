@@ -47,7 +47,7 @@ function isUser(uid) {
       return false;
     }
   })
-}
+} 
 
 module.exports = {
   convertTime: convertTime,
