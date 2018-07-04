@@ -6,7 +6,7 @@ var ERROR = 500
 /***
  * 微信登录
  */
-function weixinLogin(userInfo, that) {
+function weixinLogin(userInfo, cb) {
   wxLogin(userInfo, function (res) {
     if (res == null || res.data == null || res.data == "") {
       return;

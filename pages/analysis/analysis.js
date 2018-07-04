@@ -11,6 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    showUnlogin: true,
     monthCost: "0.00",
     difMonthCost: "0.00",
     mostList: [],
@@ -41,6 +42,9 @@ Page({
         };
         util.analysis(data, function (res) {
           console.log(res);
+          that.setData({
+            showUnlogin: false
+          });
           showCostTitle(res.data.halfYear, that);
           showWeek(res.data.week, that);
           showMonth(res.data.month, that);
@@ -51,6 +55,7 @@ Page({
       },
       fail: function () {
         that.setData({
+          showUnlogin: true,
           monthCost: "0.00",
           difMonthCost: "0.00",
           showWeek: false,

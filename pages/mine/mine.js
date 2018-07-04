@@ -60,6 +60,13 @@ Page({
   },
 
   /**
+    * 用户点击右上角分享
+    */
+  onShareAppMessage: function () {
+
+  },
+
+  /**
    * 绑定对象
    */
   bindTap: function (e) {

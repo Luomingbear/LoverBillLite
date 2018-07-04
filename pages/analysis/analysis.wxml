@@ -58,4 +58,8 @@
   </view>
 </block>
 
+<block wx:if="{{showUnlogin}}">
+<image src='https://file.2fun.xyz/unlogin_analysis.png' style='width:100%;height:auto;'></image>
+</block>
+
 <template is="wxToast" data="{{...wxToastConfig}}"></template>
