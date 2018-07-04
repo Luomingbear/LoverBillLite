@@ -13,19 +13,27 @@ function weixinLogin(userInfo, that) {
     }
     var parse = JSON.parse(res.data)
     console.log(parse);
-    wx.setStorage({
-      key: 'dId',
-      data: parse.data.userId,
-    });
-    var userInfo = {
-      userId: parse.data.userId,
-      nickname: parse.data.nickname,
-      avatar: parse.data.avatar
-    };
-    wx.setStorage({
-      key: 'userInfo',
-      data: userInfo,
-    });
+    if (parse.code == SUCCEED) {
+      wx.setStorage({
+        key: 'uid',
+        data: parse.data.uid,
+      });
+
+      wx.setStorageSync("userInfo", {
+        nickname: parse.data.nickname,
+        avatar: parse.data.avatar,
+        uid: parse.data.uid
+      });
+
+      //返回刚才的页面
+      wx.navigateBack({
+        delta: 1
+      })
+    } else {
+      getApp().wxToast({
+        title: parse.message
+      })
+    }
   });
 }
 
