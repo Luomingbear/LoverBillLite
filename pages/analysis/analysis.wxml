@@ -34,13 +34,12 @@
 
 <block wx:if="{{showMonthMost}}">
   <view class='part_line'></view>
-  <text class='title_text'>本月单笔消费排行</text>
-  <view wx:for="{{mostList}}" wx:key="{{...item.index}}">
+  <text class="title_text">本月单笔消费排行</text>
+  <view wx:for="{{mostList}}" wx:key="{{item.index}}">
     <template is="costItem" data="{{...item}}">
     </template>
   </view>
 </block>
-
 
 <block wx:if="{{showHalfYear}}">
   <view class='part_line'></view>
@@ -52,14 +51,14 @@
 <block wx:if="{{showLover}}">
   <view class='part_line'></view>
   <text class='title_text'>本月双方消费比例</text>
-  <view wx:for="{{loverList}}" wx:key="{{...item.index}}">
+  <view wx:for="{{loverList}}" wx:key="{{item.index}}">
     <template is="loverCostItem" data="{{...item}}">
     </template>
   </view>
 </block>
 
 <block wx:if="{{showUnlogin}}">
-<image src='https://file.2fun.xyz/unlogin_analysis.png' style='width:100%;height:auto;'></image>
+  <image src='https://file.2fun.xyz/unlogin_analysis.png' style='width:100%;height:auto;'></image>
 </block>
 
 <template is="wxToast" data="{{...wxToastConfig}}"></template>

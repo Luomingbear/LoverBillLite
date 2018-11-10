@@ -16,16 +16,18 @@ Page({
       lastClick: 0, //上一次选择的
       tags: [],
     },
+    recommend: [],
+    note: "",
     date: "", //时间
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     var self = this
     var iBillService = require("../../utils/IBillService.js");
-    iBillService.getTags(self, function () {
+    iBillService.getTags(self, function() {
       self.setTags()
     });
   },
@@ -33,7 +35,7 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  setTags: function () {
+  setTags: function() {
     var winWidth = 750; // 屏幕宽度（rpx）
     var maxCol = 5; // 一页最大列数
     var tag = this.data.tag;
@@ -69,11 +71,11 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   },
 
-  showHi: function (res) {
+  showHi: function(res) {
     getApp().wxToast({
       title: res
     })
@@ -82,7 +84,7 @@ Page({
   /**
    * 标签的选择
    */
-  selectItem: function (e) {
+  selectItem: function(e) {
     var index = e.currentTarget.dataset.index;
     var tag = this.data.tag;
     var lastClick = tag.lastClick;
@@ -96,25 +98,33 @@ Page({
       tag: tag
     })
   },
-
+  /**
+   * 选择了推荐的备注消息
+   */
+  selectedNote: function(e) {
+    note = e._relatedInfo.anchorRelatedText;
+    this.setData({
+      note: note
+    });
+  },
   /**
    * 输入金额
    */
-  inputMoney: function (res) {
+  inputMoney: function(res) {
     money = res.detail.value;
   },
 
   /**
    * 输入备注
    */
-  inputNote: function (res) {
+  inputNote: function(res) {
     note = res.detail.value;
   },
 
   /**
    * 选择时间
    */
-  bindDateChange: function (res) {
+  bindDateChange: function(res) {
     console.log(res.detail.value);
     this.setData({
       date: res.detail.value
@@ -124,7 +134,7 @@ Page({
   /**
    * 记一笔
    */
-  createBill: function (res) {
+  createBill: function(res) {
     if (money == 0) {
       getApp().wxToast({
         title: '请输入金额'
@@ -152,7 +162,7 @@ Page({
 
     var that = this;
     var ibillService = require("../../utils/IBillService.js");
-    ibillService.createBill(data, function () {
+    ibillService.createBill(data, function() {
       getApp().globalData.created = true;
       wx.setStorageSync("create", true);
       wx.switchTab({

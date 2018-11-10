@@ -8,7 +8,7 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.6.4",
+	"libVersion": "2.4.0",
 	"appid": "wxe9e265f5772eb033",
 	"projectname": "%E6%83%85%E4%BE%A3%E8%B4%A6%E5%8D%95",
 	"condition": {
@@ -20,11 +20,15 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"game": {
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
@@ -36,6 +40,12 @@
 					"id": -1,
 					"name": "login",
 					"pathName": "pages/login/login",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "create",
+					"pathName": "pages/create/create",
 					"query": ""
 				}
 			]

@@ -22,7 +22,7 @@ function getBillList(uid, page, that) {
       uid: uid,
       page: page
     },
-    success: function (res) {
+    success: function(res) {
       var parse = JSON.parse(res.data);
       console.log(parse);
       if (parse.code == SUCCEED) {
@@ -49,7 +49,7 @@ function getBillList(uid, page, that) {
       }
 
     },
-    complete: function () {
+    complete: function() {
       wx.hideLoading();
       wx.stopPullDownRefresh();
     }
@@ -64,16 +64,17 @@ function getTags(that, cb) {
     header: {
       'content-type': 'application/x-www-form-urlencoded'
     },
-    url: getApp().baseUrl + "api/getTagList.php",
-    success: function (res) {
+    url: getApp().baseUrl + "api/getTagList2.php",
+    success: function(res) {
       var parse = JSON.parse(res.data);
       if (parse.code == SUCCEED) {
         var list = [];
-        for (var j = 0, len = parse.data.length; j < len; j++) {
+        var tags = parse.data.tag;
+        for (var j = 0, len = tags.length; j < len; j++) {
           var item = {
-            name: parse.data[j].name,
-            image: parse.data[j].image,
-            tid: parse.data[j].tid,
+            name: tags[j].name,
+            image: tags[j].image,
+            tid: tags[j].tid,
             selected: j == 0 ? true : false
           }
           list.push(item);
@@ -82,12 +83,13 @@ function getTags(that, cb) {
         that.setData({
           tag: {
             tags: list
-          }
+          },
+          recommend: parse.data.note
         })
         typeof cb == 'function' && cb()
       }
     },
-    complete: function () {
+    complete: function() {
       wx.hideLoading();
     }
   })
@@ -105,7 +107,7 @@ function createBill(data, cb) {
     },
     url: getApp().baseUrl + "api/addBill.php",
     data: data,
-    success: function (res) {
+    success: function(res) {
       console.log(res);
       var parse = JSON.parse(res.data);
       if (parse.code == SUCCEED) {
@@ -131,7 +133,7 @@ function deleteBill(data, cb) {
     },
     url: getApp().baseUrl + "api/deleteBill.php",
     data: data,
-    success: function (res) {
+    success: function(res) {
       console.log(res);
       var parse = JSON.parse(res.data);
       if (parse.code == SUCCEED) {
@@ -157,7 +159,7 @@ function analysis(data, cb) {
     },
     url: getApp().baseUrl + "api/analysis.php",
     data: data,
-    success: function (res) {
+    success: function(res) {
       // console.log(res);
       var parse = JSON.parse(res.data);
       if (parse.code == SUCCEED) {
@@ -174,7 +176,7 @@ function analysis(data, cb) {
 /**
  * 获取今日的消费情况
  */
-function getTodayCost(data,cb) {
+function getTodayCost(data, cb) {
   wx.request({
     method: "POST",
     dataType: "JSON",
@@ -183,7 +185,7 @@ function getTodayCost(data,cb) {
     },
     url: getApp().baseUrl + "api/getTodayCostDetail.php",
     data: data,
-    success: function (res) {
+    success: function(res) {
       var parse = JSON.parse(res.data);
       console.log(parse);
       if (parse.code == SUCCEED) {
