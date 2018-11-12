@@ -102,7 +102,8 @@ Page({
    * 选择了推荐的备注消息
    */
   selectedNote: function(e) {
-    note = e._relatedInfo.anchorRelatedText;
+    // console.debug(e);
+    note = e.currentTarget.id;
     this.setData({
       note: note
     });

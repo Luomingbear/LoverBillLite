@@ -35,8 +35,8 @@
   <input style='margin :0 20rpx;' class=' auto' value='{{note}}' placeholder="请输入备注（选填）" bindinput='inputNote'></input>
 </view>
 <view class='stagLayout'>
-  <view wx:for="{{recommend}}" wx:key="{{item}}">
-    <text class='stagItem' bindtap='selectedNote'>{{item.note}}</text>
+  <view wx:for="{{recommend}}" wx:key="{{item}}" data-index='{{index}}'>
+    <text id='{{item.note}}' class='stagItem' bindtap='selectedNote'>{{item.note}}</text>
   </view>
 </view>
 
