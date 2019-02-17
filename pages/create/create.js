@@ -25,6 +25,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    money = 0.0;
+    note = "";
+    tid = 0;
     var self = this
     var iBillService = require("../../utils/IBillService.js");
     iBillService.getTags(self, function() {
