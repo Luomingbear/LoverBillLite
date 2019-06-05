@@ -22,7 +22,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     initCanvas();
 
   },
@@ -30,17 +30,17 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     //
     var that = this;
     wx.getStorage({
       key: 'uid',
-      success: function (res) {
+      success: function(res) {
         var util = require("../../utils/IBillService.js");
         var data = {
           uid: res.data
         };
-        util.analysis(data, function (res) {
+        util.analysis(data, function(res) {
           console.log(res);
           that.setData({
             showUnlogin: false
@@ -51,9 +51,10 @@ Page({
           showMostCost(res.data.most, that);
           showHalfYear(res.data.halfYear, that);
           showLover(res.data.halfYear, that);
+          showBudget(res.data.budget, that);
         })
       },
-      fail: function () {
+      fail: function() {
         that.setData({
           showUnlogin: true,
           monthCost: "0.00",
@@ -62,7 +63,8 @@ Page({
           showMonth: false,
           showMonthMost: false,
           showHalfYear: false,
-          showLover: false
+          showLover: false,
+          showBudget: false
         })
       }
     })
@@ -72,26 +74,26 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   },
 
-  touchWeekHandler: function (e) {
+  touchWeekHandler: function(e) {
     weekCanvas.showToolTip(e, {
-      format: function (item, category) {
+      format: function(item, category) {
         return category + ' ' + item.name + ':' + item.data
       }
     });
   },
 
-  touchMonthHandler: function (e) {
+  touchMonthHandler: function(e) {
     console.log(monthCanvas.getCurrentDataIndex(e));
 
   },
 
-  touchHalfYearHandler: function (e) {
+  touchHalfYearHandler: function(e) {
     halfYearCanvas.showToolTip(e, {
-      format: function (item, category) {
+      format: function(item, category) {
         return category + ' ' + item.name + ':' + item.data
       }
     });
@@ -164,7 +166,7 @@ function showWeek(res, that) {
     name: '总消费',
     color: "#ff7073",
     data: res.cost,
-    format: function (val, name) {
+    format: function(val, name) {
       return val.toFixed(2) + '元';
     }
   }];
@@ -182,7 +184,7 @@ function showWeek(res, that) {
       },
       yAxis: {
         title: '消费金额（元）',
-        format: function (val) {
+        format: function(val) {
           return val.toFixed(2);
         },
         min: 0
@@ -260,7 +262,7 @@ function getColor(index) {
     "#A62D30"
   )
 
-  if (index < colors.length || index >= 0) {
+  if (index < colors.length && index >= 0) {
     return colors[index];
   } else
     return colors[colors.length - 1];
@@ -314,7 +316,7 @@ function showHalfYear(res, that) {
     name: '总消费',
     color: "#ff7073",
     data: list,
-    format: function (val, name) {
+    format: function(val, name) {
       return val.toFixed(2) + '元';
     }
   }]
@@ -331,7 +333,7 @@ function showHalfYear(res, that) {
       },
       yAxis: {
         title: '消费金额（元）',
-        format: function (val) {
+        format: function(val) {
           return val.toFixed(2);
         },
         min: 0
@@ -391,5 +393,30 @@ function showLover(res, that) {
   that.setData({
     loverList: list,
     showLover: true
+  })
+}
+
+/**
+ * 显示预算情况
+ * @param:res  里面的数据是今日使用的消费和今日预算 
+ */
+function showBudget(res, that) {
+  if (!res.has) {
+    that.setData({
+      showBudget: false
+    })
+    return
+  }
+
+  var surplus = res.plan - res.used
+  if (surplus < 0) {
+    //说明超过了今日预算
+    surplus = 0.00
+  }
+
+  that.setData({
+    todybudget: res.plan.toFixed(2),
+    surplusBudget: surplus.toFixed(2),
+    showBudget: true
   })
 }

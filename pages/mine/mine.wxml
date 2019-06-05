@@ -52,4 +52,14 @@
 
 <view class="part_line"></view>
 
+<view class="item_layout" style="background:{{buttonBgo}}" bindtap="budgetTap">
+  <image class="icon_left"></image>
+  <view class="title_text">
+    <text>设置预算</text>
+  </view>
+  <image class="icon_right"></image>
+</view>
+
+<view class="part_line"></view>
+
 <template is="wxToast" data="{{...wxToastConfig}}"></template>

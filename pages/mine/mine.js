@@ -139,6 +139,12 @@ Page({
         login(that);
       }
     })
+  },
+
+  budgetTap:function(e){
+    wx.navigateTo({
+      url: '../setBudget/setBudget'
+    })
   }
 })
 

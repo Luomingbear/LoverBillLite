@@ -1,0 +1,14 @@
+<!--pages/setBudget.wxml--> 
+<import src="../../template/temp.wxml" />
+<view class='container'>
+  <text class='notice'></text>
+
+  <input class='input' placeholder='请输入每月预算' type="number" bindinput="inputBudget"></input>
+
+  <view class='input_line'></view>
+
+  <button class="createBillBtn" hover-class="createBillBtnHover" bindtap="setBudgetTap">设置</button>
+</view>
+
+
+<template is="wxToast" data="{{...wxToastConfig}}"></template>

@@ -5,7 +5,8 @@
     "pages/mine/mine",
     "pages/login/login",
     "pages/create/create",
-    "pages/bind/bind"
+    "pages/bind/bind",
+    "pages/setBudget/setBudget"
   ],
   "window": {
     "backgroundTextStyle": "dark",

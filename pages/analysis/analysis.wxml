@@ -57,6 +57,21 @@
   </view>
 </block>
 
+<block wx:if="{{showBudget}}">
+  <text class='title_text'>本人预算情况</text>
+  <view class='horizontal_layout margin_normal'>
+    <view class='vertical_layout center_main auto '>
+      <text class='color_gray font_small'>今日预算</text>
+      <text class='color_black font_big bold'>{{todybudget}}</text>
+    </view>
+    <view class='vertical_layout center_main auto lover_center_line'>
+      <text class='color_gray font_small'>今日剩余预算</text>
+      <text class='color_black font_big bold'>{{surplusBudget}}</text>
+    </view>
+  </view>
+
+</block>
+
 <block wx:if="{{showUnlogin}}">
   <image src='https://file.2fun.xyz/unlogin_analysis.png' style='width:100%;height:auto;'></image>
 </block>
