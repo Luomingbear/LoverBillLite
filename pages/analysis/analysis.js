@@ -51,7 +51,7 @@ Page({
           showMostCost(res.data.most, that);
           showHalfYear(res.data.halfYear, that);
           showLover(res.data.halfYear, that);
-          showBudget(res.data.budget, that);
+          // showBudget(res.data.budget, that);
         })
       },
       fail: function() {

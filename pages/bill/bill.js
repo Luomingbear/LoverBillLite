@@ -158,12 +158,10 @@ Page({
  * 显示今天的消费情况
  */
 function showTodayCost(res, that) {
-  var cost = 0;
-  for (var i = 0; i < res.length; i++) {
-    cost += res[i].cost;
-  }
-
   that.setData({
-    todayCost: cost.toFixed(2)
+    todayCost: res.allCost,
+    has:res.has,
+    todayMineCost:res.mineCost,
+    leftBudget:res.left
   });
 }
