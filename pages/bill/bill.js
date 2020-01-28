@@ -18,7 +18,6 @@ Page({
       success: function (res) {
         if (that.data.billList.length > 0
           && !getApp().globalData.created) {
-          console.log("不刷新");
           return;
         }
         var ibillService = require("../../utils/IBillService.js");
@@ -159,9 +158,9 @@ Page({
  */
 function showTodayCost(res, that) {
   that.setData({
-    todayCost: res.allCost,
+    todayCost: res.allCost.toFixed(2),
     has:res.has,
-    todayMineCost:res.mineCost,
-    leftBudget:res.left
+    todayMineCost: res.mineCost.toFixed(2),
+    leftBudget: res.left.toFixed(2)
   });
 }

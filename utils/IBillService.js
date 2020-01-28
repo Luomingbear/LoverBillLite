@@ -36,7 +36,6 @@ function getBillList(uid, page, that) {
           });
         } else {
           //刷新
-          console.log("刷新")
           that.setData({
             billList: parse.data
           });

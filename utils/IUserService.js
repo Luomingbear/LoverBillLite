@@ -7,7 +7,7 @@ var ERROR = 500
  * 微信登录
  */
 function weixinLogin(userInfo, cb) {
-  wxLogin(userInfo, function (res) {
+  wxLogin(userInfo, function(res) {
     if (res == null || res.data == null || res.data == "") {
       return;
     }
@@ -47,7 +47,7 @@ function wxLogin(userInfo, cb) {
 
   console.debug(userInfo);
   wx.login({
-    success: function (res) {
+    success: function(res) {
       wx.request({
         url: getApp().baseUrl + 'api/weixinLogin.php',
         data: {
@@ -61,7 +61,7 @@ function wxLogin(userInfo, cb) {
         },
         method: "POST",
         dataType: "JSON",
-        success: function (e) {
+        success: function(e) {
           typeof cb == 'function' && cb(e);
         }
       })
@@ -82,7 +82,7 @@ function bindLover(data, cb) {
     },
     url: getApp().baseUrl + "api/bindLover.php",
     data: data,
-    success: function (res) {
+    success: function(res) {
       console.log(res);
       var parse = JSON.parse(res.data);
       if (parse.code == SUCCEED) {
@@ -110,8 +110,7 @@ function mineInit(cb) {
     data: {
       uid: wx.getStorageSync("uid")
     },
-    success: function (res) {
-      console.log(res);
+    success: function(res) {
       var parse = JSON.parse(res.data);
       if (parse.code == SUCCEED) {
         typeof cb == 'function' && cb(parse);
@@ -147,7 +146,7 @@ function emailLogin(email, password, avatar, nickname, that) {
       'content-type': 'application/x-www-form-urlencoded'
     },
     data: data,
-    success: function (res) {
+    success: function(res) {
       if (res.data == null || res.data == "")
         return;
 
@@ -178,9 +177,40 @@ function emailLogin(email, password, avatar, nickname, that) {
   })
 }
 
+function setBudget(data, that) {
+  wx.request({
+    method: "POST",
+    url: getApp().baseUrl + "api/setBudget.php",
+    dataType: "JSON",
+    header: {
+      'content-type': 'application/x-www-form-urlencoded'
+    },
+    data: data,
+    success: function(res) {
+      if (res.data == null || res.data == "")
+        return;
+
+      var result = JSON.parse(res.data);
+      console.log(result);
+      if (result.code == SUCCEED) {
+        //返回刚才的页面
+        wx.navigateBack({
+          delta: 1
+        })
+
+      } else {
+        getApp().wxToast({
+          title: result.message
+        })
+      }
+    }
+  })
+}
+
 module.exports = {
   emailLogin: emailLogin,
   weixinLogin: weixinLogin,
   mineInit: mineInit,
   bindLover: bindLover,
+  setBudget: setBudget
 }

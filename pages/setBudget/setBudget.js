@@ -1,5 +1,5 @@
 // pages/setBudget.js
-var budget= 0.0;
+var budget = 0.0;
 
 Page({
 
@@ -48,14 +48,46 @@ Page({
   /**
    * 输入每月的预算
    */
-  inputBudget: function (res) {
+  inputBudget: function(res) {
     budget = res.detail.value;
   },
   /**
    * 点击设置预算
    */
   setBudgetTap: function(e) {
-    //todo 点击设置预算
+    var that = this;
+    wx.getStorage({
+      key: 'uid',
+      success: function(res) {
+        var data = {
+          uid: res.data,
+          budget: budget
+        }
+
+        var userUtil = require("../../utils/IUserService.js");
+        var util = require("../../utils/util.js");
+
+        userUtil.setBudget(data, that);
+      },
+      fail: function(res) {
+        that.setData({
+          billList: [],
+          todayCost: "0.00"
+        });
+        wx.showModal({
+          title: '是否前往登录',
+          content: '',
+          confirmColor: "#ff7073",
+          success: function(res) {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: '../login/login',
+              })
+            }
+          }
+        })
+      }
+    });
   }
 
 })
