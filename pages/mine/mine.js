@@ -13,19 +13,20 @@ Page({
       uid: "0000"
     },
     bindLoverText: "绑定对象",
-    loginText: "立即登录"
+    loginText: "立即登录",
+    hasBudget: false
   },
 
-  onShow: function () {
+  onShow: function() {
     var that = this
     wx.getStorage({
       key: 'userInfo',
-      success: function (res) {
+      success: function(res) {
         //获取本地的数据
         if (res.data != null) {
           that.setData({
             userInfo: res.data,
-            loginText: "退出登录"
+            loginText: "退出登录",
           })
         }
 
@@ -33,20 +34,19 @@ Page({
         if (getApp().globalData.loverInfo == null) {
           //初始化数据
           mineInit(that);
-        }
-        else {
+        } else {
           that.setData({
             loverInfo: getApp().globalData.loverInfo
           })
         }
 
       },
-      fail: function (res) {
+      fail: function(res) {
         wx.showModal({
           title: '您暂未登录',
           confirmColor: "#ff7073",
           confirmText: "登录",
-          success: function (res) {
+          success: function(res) {
             if (res.confirm) {
               wx.navigateTo({
                 url: '../login/login'
@@ -55,24 +55,26 @@ Page({
           }
         })
       }
+    });
+
+    wx.getStorage({
+      key: 'budget',
+      success: function(res) {
+        that.setData({
+          hasBudget: res.data > 0,
+          budget: res.data
+        })
+      },
     })
-
-  },
-
-  /**
-    * 用户点击右上角分享
-    */
-  onShareAppMessage: function () {
-
   },
 
   /**
    * 绑定对象
    */
-  bindTap: function (e) {
+  bindTap: function(e) {
     wx.getStorage({
       key: 'userInfo',
-      success: function (res) {
+      success: function(res) {
         console.log(res.data)
         if (res.data == null) {
 
@@ -84,13 +86,14 @@ Page({
             url: '../bind/bind',
           })
         }
-      }, fail: function (res) {
+      },
+      fail: function(res) {
         wx.showModal({
           title: '您当前暂未登录',
           content: '',
           confirmText: "登录",
           confirmColor: "#ff7073",
-          success: function (res) {
+          success: function(res) {
             if (res.confirm) {
               wx.navigateTo({
                 url: '../login/login'
@@ -100,13 +103,12 @@ Page({
         })
       }
     })
-
   },
 
-  myTagTap: function () {
+  myTagTap: function() {
     wx.getStorage({
       key: 'userInfo',
-      success: function (res) {
+      success: function(res) {
         console.log(res.data)
         if (res.data == null) {
           wx.navigateTo({
@@ -117,7 +119,8 @@ Page({
             url: '../mytag/mytag',
           })
         }
-      }, fail: function (res) {
+      },
+      fail: function(res) {
         wx.navigateTo({
           url: '../login/login'
         })
@@ -127,21 +130,21 @@ Page({
   },
 
   // 退出登录
-  logoutTap: function (e) {
+  logoutTap: function(e) {
     var that = this;
 
     wx.getStorage({
       key: 'uid',
-      success: function (res) {
+      success: function(res) {
         logout(that);
       },
-      fail: function () {
+      fail: function() {
         login(that);
       }
     })
   },
 
-  budgetTap:function(e){
+  budgetTap: function(e) {
     wx.navigateTo({
       url: '../setBudget/setBudget'
     })
@@ -152,7 +155,7 @@ function logout(that) {
   wx.showModal({
     title: '确定退出登录吗？',
     confirmColor: "#ff7073",
-    success: function (res) {
+    success: function(res) {
       if (res.confirm) {
         wx.clearStorage()
 
@@ -188,7 +191,7 @@ function login(that) {
  */
 function mineInit(that) {
   var util = require("../../utils/IUserService.js");
-  util.mineInit(function (res) {
+  util.mineInit(function(res) {
     showMineUi(res.data, that);
   });
 }

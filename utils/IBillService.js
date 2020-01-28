@@ -107,8 +107,8 @@ function createBill(data, cb) {
     url: getApp().baseUrl + "api/addBill.php",
     data: data,
     success: function(res) {
-      console.log(res);
       var parse = JSON.parse(res.data);
+      console.log(parse);
       if (parse.code == SUCCEED) {
         typeof cb == 'function' && cb();
       } else {

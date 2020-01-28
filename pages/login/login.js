@@ -127,7 +127,11 @@ Page({
       return;
     }
     var iuserService = require("../../utils/IUserService.js");
+    // console.log(e.detail);
     var userInfo = e.detail.userInfo
+    if (email == "" || password == "") {
+      return;
+    }
     iuserService.emailLogin(email, password, userInfo.avatarUrl, userInfo.nickName, this);
   },
 })

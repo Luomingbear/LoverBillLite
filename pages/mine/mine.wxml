@@ -52,14 +52,26 @@
 
 <view class="part_line"></view>
 
-<view class="item_layout" style="background:{{buttonBgo}}" bindtap="budgetTap">
-  <image class="icon_left"></image>
-  <view class="title_text">
-    <text>设置预算</text>
-  </view>
-  <image class="icon_right"></image>
-</view>
+<block wx:if="{{userInfo}}">
+  <view class="item_layout" style="background:{{buttonBgo}}" bindtap="budgetTap">
+    <image class="icon_left"></image>
+    <block wx:if="{{hasBudget}}">
+      <view class="title_text">
+        <text>每月预算 ¥{{budget}}</text>
+      </view>
 
-<view class="part_line"></view>
+    </block>
+    <block wx:if="{{!hasBudget}}">
+      <view class="title_text">
+        <text>设置预算</text>
+      </view>
+    </block>
+    <image class="icon_right"></image>
+  </view>
+  <view class="part_line"></view>
+
+</block>
+
+
 
 <template is="wxToast" data="{{...wxToastConfig}}"></template>

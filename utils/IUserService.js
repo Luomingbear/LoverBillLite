@@ -25,6 +25,8 @@ function weixinLogin(userInfo, cb) {
         uid: parse.data.uid
       });
 
+      wx.setStorageSync("budget", parse.data.budget);
+
       //返回刚才的页面
       wx.navigateBack({
         delta: 1
@@ -62,6 +64,8 @@ function wxLogin(userInfo, cb) {
         method: "POST",
         dataType: "JSON",
         success: function(e) {
+          var parse = JSON.parse(e.data);
+          wx.setStorageSync("budget", result.data.budget);
           typeof cb == 'function' && cb(e);
         }
       })
@@ -137,7 +141,7 @@ function emailLogin(email, password, avatar, nickname, that) {
     avatar: avatar,
     nickname: nickname,
   };
-  console.log(data);
+  // console.log(data);
   wx.request({
     method: "POST",
     url: getApp().baseUrl + "api/registerOrLogin.php",
@@ -161,8 +165,9 @@ function emailLogin(email, password, avatar, nickname, that) {
         wx.setStorageSync("userInfo", {
           nickname: nickname,
           avatar: avatar,
-          uid: result.data.uid
+          uid: result.data.uid,
         });
+        wx.setStorageSync("budget", result.data.budget);
 
         //返回刚才的页面
         wx.navigateBack({
@@ -193,6 +198,7 @@ function setBudget(data, that) {
       var result = JSON.parse(res.data);
       console.log(result);
       if (result.code == SUCCEED) {
+        wx.setStorageSync("budget", result.data)
         //返回刚才的页面
         wx.navigateBack({
           delta: 1
